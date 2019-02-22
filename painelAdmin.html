@@ -99,11 +99,11 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">Painel Administrativo</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Novo Agendamento</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <span data-feather="calendar"></span>
@@ -112,136 +112,240 @@
         </div>
       </div>
 
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-      <h2>Section title</h2>
+      <div class="my-4 w-100" id="myChart" width="900" height="380">
+        
+        <h2>Agendamentos</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
+              <th>Horários
+              </th>
+              <th>Segunda</th>
+              <th>Terça</th>
+              <th>Quarta</th>
+              <th>Quinta</th>
+              <th>Sexta</th>
+              <th>Sábado</th>
+              <th>Domingo</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>sit</td>
+              <td>7:00</td>
+              <td>
+                Carlos Eduardo Teixeira da Silva
+              </td>
+              <td>
+                Gabriel Augusto Zutião
+              </td>
+              <td>
+                Gabriel Augusto Zutião
+              </td>
+              <td>
+                Gabriel Augusto Zutião
+              </td>
+              <td>
+                Gabriel Augusto Zutião
+              </td>
+              <td>
+                Gabriel Augusto Zutião
+              </td>
+              <td>
+                Gabriel Augusto Zutião
+              </td>
             </tr>
+
             <tr>
+              <td>7:30</td>
               <td>1,002</td>
               <td>amet</td>
               <td>consectetur</td>
               <td>adipiscing</td>
               <td>elit</td>
             </tr>
+
             <tr>
-              <td>1,003</td>
-              <td>Integer</td>
-              <td>nec</td>
-              <td>odio</td>
-              <td>Praesent</td>
+              <td>8:00</td>
             </tr>
+
             <tr>
-              <td>1,003</td>
-              <td>libero</td>
-              <td>Sed</td>
-              <td>cursus</td>
-              <td>ante</td>
+              <td>8:30</td>
             </tr>
+
             <tr>
-              <td>1,004</td>
-              <td>dapibus</td>
-              <td>diam</td>
-              <td>Sed</td>
-              <td>nisi</td>
+              <td>9:00</td>
             </tr>
+
             <tr>
-              <td>1,005</td>
-              <td>Nulla</td>
-              <td>quis</td>
-              <td>sem</td>
-              <td>at</td>
+              <td>9:30</td>
             </tr>
+
             <tr>
-              <td>1,006</td>
-              <td>nibh</td>
-              <td>elementum</td>
-              <td>imperdiet</td>
-              <td>Duis</td>
+              <td>10:00</td>
             </tr>
+
             <tr>
-              <td>1,007</td>
-              <td>sagittis</td>
-              <td>ipsum</td>
-              <td>Praesent</td>
-              <td>mauris</td>
+              <td>8:00</td>
             </tr>
+
             <tr>
-              <td>1,008</td>
-              <td>Fusce</td>
-              <td>nec</td>
-              <td>tellus</td>
-              <td>sed</td>
+              <td>11:00</td>
             </tr>
+
             <tr>
-              <td>1,009</td>
-              <td>augue</td>
-              <td>semper</td>
-              <td>porta</td>
-              <td>Mauris</td>
+              <td>8:00</td>
             </tr>
+
             <tr>
-              <td>1,010</td>
-              <td>massa</td>
-              <td>Vestibulum</td>
-              <td>lacinia</td>
-              <td>arcu</td>
+              <td>12:00</td>
             </tr>
+
             <tr>
-              <td>1,011</td>
-              <td>eget</td>
-              <td>nulla</td>
-              <td>Class</td>
-              <td>aptent</td>
+              <td>8:00</td>
             </tr>
+
             <tr>
-              <td>1,012</td>
-              <td>taciti</td>
-              <td>sociosqu</td>
-              <td>ad</td>
-              <td>litora</td>
+              <td>13:00</td>
             </tr>
+
             <tr>
-              <td>1,013</td>
-              <td>torquent</td>
-              <td>per</td>
-              <td>conubia</td>
-              <td>nostra</td>
+              <td>13:00</td>
             </tr>
+
             <tr>
-              <td>1,014</td>
-              <td>per</td>
-              <td>inceptos</td>
-              <td>himenaeos</td>
-              <td>Curabitur</td>
+              <td>14:00</td>
             </tr>
+
             <tr>
-              <td>1,015</td>
-              <td>sodales</td>
-              <td>ligula</td>
-              <td>in</td>
-              <td>libero</td>
+              <td>13:00</td>
             </tr>
+
+            <tr>
+              <td>15:00</td>
+            </tr>
+
+            <tr>
+              <td>13:00</td>
+            </tr>
+
+            <tr>
+              <td>16:00</td>
+            </tr>
+
+            <tr>
+              <td>13:00</td>
+            </tr>
+
+            <tr>
+              <td>17:00</td>
+            </tr>
+
+            <tr>
+              <td>13:00</td>
+            </tr>
+
+            <tr>
+              <td>18:00</td>
+            </tr>
+
+            <tr>
+              <td>13:00</td>
+            </tr>
+
+            <tr>
+              <td>19:00</td>
+            </tr>
+
+            <tr>
+              <td>13:00</td>
+            </tr>
+
+            <tr>
+              <td>20:00</td>
+            </tr>
+
+            <tr>
+              <td>20:30</td>
+            </tr>
+
+            <tr>
+              <td>21:00</td>
+            </tr>
+
+            <tr>
+              <td>13:00</td>
+            </tr>
+
+            <tr>
+              <td>22:00</td>
+            </tr>
+
           </tbody>
         </table>
       </div>
+
+      </div>
+
+      <table>
+          <caption class="mes">Fevereiro 2011</caption>
+            <thead>
+              <tr>
+              <td class="dia"><div class="semana">Domingo</td>
+              <td class="dia"><div class="semana">Segunda</td>
+              <td class="dia"><div class="semana">Terça</td>
+              <td class="dia"><div class="semana">Quarta</td>
+              <td class="dia"><div class="semana">Quinta</td>
+              <td class="dia"><div class="semana">Sexta</td>
+              <td class="dia"><div class="semana">Sábado</td>
+          </tr>
+        </thead>
+
+          <tbody>
+            <tr>
+              <td class="dia">1<span class="evento">2</span></td>
+              <td class="dia">2<span class="evento">5</span></td>
+              <td class="dia">3<span class="evento">3</span></td>
+              <td class="dia">4</td>
+              <td class="dia">5<span class="evento">1</span></td>
+              <td class="dia">6</td>
+              <td class="dia">7</td>
+          </tr>
+
+          <tr>
+            <td class="dia">8<span class="evento">2</span></td>
+            <td class="dia">9</td>
+            <td class="dia">10</td>
+            <td class="dia">11<span class="evento">5</span></td>
+            <td class="dia">12</td>
+            <td class="dia">13<span class="evento"></span></td>
+            <td class="dia">14</td>
+          </tr>     
+
+          <tr>
+            <td class="dia">15<span class="evento">2</span></td>
+            <td class="dia">16</td>
+            <td class="dia">17</td>
+            <td class="dia">18<span class="evento">5</span></td>
+            <td class="dia">19</td>
+            <td class="dia">20<span class="evento"></span></td>
+            <td class="dia">21</td>
+          </tr>
+
+          <tr>
+            <td class="dia">22<span class="evento">2</span></td>
+            <td class="dia">23</td>
+            <td class="dia">24</td>
+            <td class="dia">25<span class="evento">5</span></td>
+            <td class="dia">26</td>
+            <td class="dia">27<span class="evento"></span></td>
+            <td class="dia">28</td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+
     </main>
   </div>
 </div>
