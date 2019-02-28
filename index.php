@@ -88,11 +88,11 @@
             } ?>
         </div>
 
-    <footer class="footer mt-auto py-3 fixed-bottom text-center">
-      <div class="container containerfooter">
-        <span class="text-muted">&copy; DevOrion - 2019</span>
-      </div>
-    </footer>
+    <footer class="footer mt-auto fixed-bottom text-center ft-color">
+        <div class="container">
+            <span class="text-muted text-success">&copy; DevOrion - 2019</span>
+        </div>
+    </footer>     
     <!-- SCRIPTS -->
     <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="js/popper-1.14-7.min.js"></script>
