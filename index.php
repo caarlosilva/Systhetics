@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Login">
     <meta name="author" content="Carlos Silva">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <!-- <meta name="generator" content="Jekyll v3.8.5">  -->
     <title>Systhetics · Login</title>
 
