@@ -16,76 +16,74 @@
       <!-- Custom styles for this template -->
       <!-- <link href="form-validation.css" rel="stylesheet">  -->
     </head>
-    <body class="bg-light">
-      <div class="container border border-dark rounded my-5 col-md-6 center">
+    <body>
+      <div class="row rowMain">
+
+        <div class=" my-5 mx-5 col-md-5">
+             <img class="mb-4 banner" src="img/banner.png" alt="" width="auto" height="auto">
+          </div>
+
+      <div class="border-left border-dark my-5 p-5 col-md-4 formContent">
         <div class="my-3 text-center">
           <h2 class="ttle">Cadastro</h2>
         </div>
 
-        <form class="form center justify-content-center" action="php/cadastro.php" method="POST">
+        <form class="form row-form center justify-content-center" action="php/cadastroUsuario.php" method="POST">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col">
               <label for="inputName"><strong>Nome Completo</strong></label>
-              <input type="name" class="form-control inpt" id="inputName" placeholder="ex. Jorge Ben Jor" required>
+              <input type="name" class="form-control inpt" id="inputName" name="inputName" placeholder="ex. Jorge Ben Jor" required>
             </div>
           </div>
         
           <div class="row">
-            <div class="col-md-12">
+            <div class="col">
               <label for="inputEmail"><strong>E-mail</strong></label>
-              <input type="email" class="form-control inpt" id="inputEmail" placeholder="ex. jorge@ben.jor" required autofocus>
+              <input type="email" class="form-control inpt" id="inputEmail" name="inputEmail" placeholder="ex. jorge@ben.jor" required autofocus>
             </div>
           </div>
             <div class="row">        
-              <div class="col-md-6">
+              <div class="col">
                 <label for="inputTel1"><strong>Telefone Principal</strong></label>
-                <input type="tel" class="form-control inpt" id="inputTel1" name="inputTel2" placeholder="(00) 00000-0000" required>
+                <input type="tel" class="form-control inpt" id="inputTel1" name="inputTel1" placeholder="(00) 00000-0000" required>
               </div>
-              <div class="col-md-6">
+              <div class="col">
                 <label for="inputTel2"><strong>Telefone Secundário</strong></label>
                 <input type="tel" class="form-control inpt" id="inputTel2" name="inputTel2" placeholder="(00) 00000-0000">
               </div>
             </div>  
 
           <div class="row"> 
-            <div class="col-md-6">
+            <div class="col">
               <label for="inputPassword"><strong>Senha</strong></label>
-              <input type="password" class="form-control inpt" id="inputPassword" placeholder="Senha" required>
+              <input type="password" class="form-control inpt" id="inputPassword" name="inputPassword" placeholder="Senha" required>
             </div>
-            <div class="col-md-6">
+            <div class="col">
               <label for="inputConfirmPassword"><strong>Confirme a Senha</strong></label>
-              <input type="password" class="form-control inpt" id="inputConfirmPassword" placeholder="Confirme a Senha" required>
+              <input type="password" class="form-control inpt" id="inputConfirmPassword" name="inputConfirmPassword" placeholder="Confirme a Senha" required>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
-              <input type="submit" class="form-controls btn btn-lg btn-dark btn-block inpt" id="btSubmit" name="btSubmit" value="Cadastrar">
+              <input type="text" id="admin" name="admin" class="form-control sr-only" value=0>
+              <button class="form-controls btn btn-lg btn-success btn-block inpt" type="submit"  id="btSubmit" name="btSubmit"> Cadastrar </button>
             </div>   
           </div>                 
           </form>   
         </div>
+      </div>
 
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mt-5 mb-3 text-muted">&copy; DevOrion - 2019</p>
-      </footer>
-
+        <footer class="footer mt-auto py-3 fixed-bottom text-center">
+          <div class="container containerfooter">
+            <span class="text-muted">&copy; DevOrion - 2019</span>
+          </div>
+        </footer>      
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script> -->
         <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mask.1.14.11.min.js"></script>
-        <script type="text/javascript" src="js/masks.js"></script>
-
-        <!-- 
-        <script type="text/javascript">
-          $("#inputTel1, #inputTel2").mask("(00) 00000-0000");
-        </script>
-       -->
-
-        
+        <script type="text/javascript" src="js/masks.js"></script>        
   </body>
 </html>
