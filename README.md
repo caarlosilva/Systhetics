@@ -13,9 +13,9 @@ The idea came when a friend told me that she'll open a Esthetic Shop, and that s
   - [HTML 5](https://www.w3schools.com/html/html5_intro.asp)  
   - [CSS](https://www.w3schools.com/css/)  
   - [JavaScript](https://www.javascript.com/) 
-  - [PHP](http://www.php.net/) /play deeper
+  - [PHP](http://www.php.net/) 
   - [Bootstrap 4](https://getbootstrap.com/) 
-  - [Jquery](https://jquery.com/) /play deeper
+  - [Jquery](https://jquery.com/) 
   - [MySql Database](https://www.mysql.com/)
 
 ### **System Features:**
