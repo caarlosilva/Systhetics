@@ -17,7 +17,7 @@
         $_SESSION['tel2']   =   $usuario['tel2'];
         $_SESSION['admin']  =   $usuario['admin'];
         if($_SESSION['admin'] == 1){ //1 = admin, 0 = user
-            header('Location:../dashboard.html');                 
+            header('Location:../dashboard.php');                 
         }
         elseif($_SESSION['admin'] == 0){
             header('Location:../index.php?msg=usernormal');

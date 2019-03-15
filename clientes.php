@@ -12,268 +12,96 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
+    <link href="css/style.css" rel="stylesheet" /> 
+
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="css/dashboard-style.css" rel="stylesheet" /> 
+
+    <!--     -->   
+    <?php require "DAO/clienteDAO.php";
+        //require "php/DAO/CategoriaDAO.php";
+        $cDAO = new ClienteDAO(); 
+        $busca = "";
+        $clientes = $cDAO->listar($busca);                
+    ?>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sidebar" data-image="img/banner.png" data-color="black">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo text-center">
-                    <img class="mx-5" src="img/logo.png" alt="" width="48" height="48">
-                    <!-- 
-                    <span class="title-left-pn">
-                        Systhetics
-                    </span>
-                    -->
-                </div>
-                <ul class="nav">
-                    <li>
-                        <a class="nav-link" href="dashboard.html">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Painel de Controle</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./user.html">
-                            <i class="nc-icon nc-bullet-list-67"></i>
-                            <p>Agenda</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="clientes.php">
-                            <i class="nc-icon nc-single-02"></i>
-                            <p>Clientes</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./typography.html">
-                            <i class="nc-icon nc-cart-simple"></i>
-                            <p>Produtos</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./icons.html">
-                            <i class="nc-icon nc-ruler-pencil"></i>
-                            <p>Serviços</p>
-                        </a>
-                    </li> 
-                    <li>
-                        <a class="nav-link" href="./icons.html">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>Usuários do Sistema</p>
-                        </a>
-                    </li>                
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="upgrade.html">
-                            <i class="nc-icon nc-settings-gear-64"></i>
-                            <p>Configurações</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <?php require_once "php/printMenu.php"?>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class=" container-fluid  ">
-                    <a class="navbar-brand" href="#"> Painel de Controle </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">Painel de Controle &nbsp;</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">99</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Pesquisar</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="" href="#">
-                                    <img class="rounded-circle mx-0" src="img/usuario/default.png" alt="Profile" width="32" height="32">   
-                                </a>                                         
-                                <a class="nav-link" href="#">                 
-                                    <span><strong>Shrek</strong></span>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Exportar</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Imprimir</a>
-                                    <a class="dropdown-item" href="#">Salvar PDF</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Explodir Tudo</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php">
-                                    <span class="no-icon">Sair</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <?php require_once "php/printNavbar.php"?>
             <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card strpied-tabled-with-hover">
+                            <div class="card striped-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Striped Table with Hover</h4>
-                                    <p class="card-category">Here is a subtitle for this table</p>
+                                    <h3 class="card-title">Clientes</h3>
+                                    <p class="card-category">Clientes cadastrados no sistema</p>
                                 </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
+                                <div class="card-body table-full-width">
+                                    <div class="row mb-4">
+                                        <div class="col-2 ml-3" >
+                                            <a class="btn btn-success form-control" id="btCad" role="button" data-toggle="modal" data-target="#modalCadastroCliente">
+                                                <i><strong> Novo</strong></i>
+                                            </a>
+                                        </div>
+                                        <div class="col mr-3">
+                                            <input class="form-control" type="search" name="search" placeholder="Pesquisar">
+                                        </div>                                           
+                                    </div>
+
+                                    <table class="table table-hover table-striped" width="100%">
                                         <thead>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
+                                            <th>Nome</th>
+                                            <th>Telefone 1</th>
+                                            <th>Rua</th>
+                                            <th>Cidade</th>
+                                            <th>Estado</th>
+                                            <th>Opções</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card card-plain table-plain-bg">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Table on Plain Background</h4>
-                                    <p class="card-category">Here is a subtitle for this table</p>
-                                </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
+                                            <?php
+                                                if(count($clientes) != 0){
+                                                    foreach($clientes as $cliente){?>
+                                                        <div class="col px-0 mb-4">
+                                                            <tr>
+                                                                <td><?php echo $cliente['id']; ?></td>
+                                                                <td><?php echo $cliente['nome']; ?></td>
+                                                                <td><?php echo $cliente['tel1']; ?></td>
+                                                                <td><?php echo $cliente['rua'] . ", " . $cliente['num'];?></td>
+                                                                <td><?php echo $cliente['cidade']; ?></td>
+                                                                <td><?php echo $cliente['estado']; ?></td>
+                                                                <td class="text-right">
+                                                                <a href="">
+                                                                    <img class="mr-2" src="img/view.png" alt="View" width="24px" height="24px">
+                                                                </a>
+                                                                <a href="">
+                                                                    <img class="mr-2" src="img/remove.png" alt="Remove" width="24px" height="24px">
+                                                                </a>
+                                                                <a href="">
+                                                                    <img class="" src="img/edit.png" alt="Edit" width="24px" height="24px">
+                                                                </a>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                    <?php }
+                                                }else{ ?>
+                                                    <div class="col px-0">
+                                                        <div class="jumbotron jumbotron-fluid">
+                                                            <div class="container text-center">
+                                                                <h1>Nada encontrado! 😢</h1>
+                                                                <p>Nenhum usuário cadastrado no sistema.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -282,117 +110,77 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    <span class="text-success text-center">Siga nossas redes sociais </span>
-                                </a>                      
-                            </li>
-                            <li>
-                                <a target="_blank" href="http://www.twitter.com">
-                                    <img src="img/twitter.png" width="16" height="16">
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="http://www.facebook.com">
-                                    <img src="img/facebook.png" width="16" height="16">
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">                        
-                            <span class="text-muted text-success">&copy; DevOrion - 
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            </span>
-                        </p>
-                    </nav>
-                </div>
-            </footer>
+
+                <form class="form row-form justify-content-center" action="php/cadastroCliente.php" method="POST">
+                  <div class="modal fade" id="modalCadastroCliente" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header"><h3 class="text-success text-center modal-title">Cadastro de Cliente</h3></div>
+                        <div class="modal-body">
+                            
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="nome">Nome</label>
+                                        <input type="name" class="form-control" id="nome" placeholder="Jorge Ben Jorge" name="nome" required>
+                                    </div>
+                                </div>      
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="tel1">Telefone 1</label>
+                                        <input type="tel" class="form-control" id="tel1" placeholder="(00) 00000-0000" name="tel1" required>
+                                    </div>
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="tel2">Telefone 2</label>
+                                        <input type="tel" class="form-control" id="tel2" placeholder="(00) 00000-0000" name="tel2">
+                                    </div>                                                 
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label class="mb-0 mt-2" for="cep">CEP</label>
+                                        <input type="cep" class="form-control" id="cep" placeholder="00000000" name="cep">
+                                    </div>
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="rua">Rua</label>
+                                        <input type="address" class="form-control" id="rua" placeholder="Rua dos Bobos" name="rua">
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="mb-0 mt-2" for="num">N°</label>
+                                        <input type="num" class="form-control" id="num" placeholder="1278" name="num">
+                                    </div>                           
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="complemento">Complemento</label>
+                                        <input type="text" class="form-control" id="complemento" placeholder="Bloco B" name="complemento">
+                                    </div>
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="bairro">Bairro</label>
+                                        <input type="text" class="form-control" id="bairro" placeholder="Jardim Cruzeiro do Sul" name="bairro">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="mb-0 mt-2" for="cidade">Cidade</label>
+                                        <input type="city" class="form-control" id="cidade" placeholder="São Carlos" name="cidade">
+                                    </div>
+                                    <div class="col-2">
+                                        <label class="mb-0 mt-2" for="estado">Estado</label>
+                                        <input type="estate" class="form-control" id="estado" placeholder="SP" name="estado">
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-success">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>           
+                  </div>
+                </form>
+                
+            <?php require_once "php/printFooter.php"?>
         </div>
-    </div>
-    <!--   -->
-    <!-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-
-        <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Background Image</p>
-                    <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <p>Filters</p>
-                    <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Images</li>
-
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-1.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-3.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-5.jpg" alt="" />
-                </a>
-            </li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-                </div>
-            </li>
-
-            <li class="header-title pro-title text-center">Want more components?</li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-                </div>
-            </li>
-
-            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-            <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-            </li>
-        </ul>
-    </div>
-</div>
- -->
 </body>
 <!--   Core JS Files   -->
 <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
@@ -403,5 +191,6 @@
 <script type="text/javascript" src="js/plugins/bootstrap-switch.js"></script>
 <script type="text/javascript" src="js/plugins/bootstrap-notify.js"></script>
 <script type="text/javascript" src="js/demo.js"></script>
+
 
 </html>

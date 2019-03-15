@@ -50,7 +50,7 @@
         function listar($busca){
             $conexao = conectar();
             $busca = "%" . $busca . "%";
-            $query = "SELECT * FROM Usuario WHERE UPPER(nome) LIKE UPPER(?);";
+            $query = "SELECT * FROM Usuario WHERE UPPER(nome) LIKE UPPER(?) ORDER BY admin DESC, nome ASC;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"s",$busca);
             $resultado = executar_SQL($conexao,$stmt);

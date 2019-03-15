@@ -1,0 +1,25 @@
+/* Modal Content/Box */
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed !important; /* Stay in place */
+  left: 0!important;
+  top: 0!important;
+  width: 100% !important; /* Full width */
+  height: 100% !important; /* Full height */
+  overflow: auto !important; /* Enable scroll if needed */
+}
+
+.modal-content {
+  background-color: #181818 !important;
+  color: white !important;
+  margin: 0 auto !important; /* 15% from the top and centered */
+  padding: 20px !important;
+  border: 1px solid white !important;
+  width: 600px !important; /* Could be more or less, depending on screen size */
+}
+
+.modal-title{
+  text-align: center !important;
+  margin: 0px !important;
+}
