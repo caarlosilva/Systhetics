@@ -3,19 +3,19 @@ The idea came when a friend told me that she'll open a Esthetic Shop, and that s
 ## Systhetics - A System for Esthetic Care/Shop.
 ### **TO DO**
 - [X] Create Database
-- [ ] User Management
-- [ ] Client Management
+- [X] User Management
+- [X] Client Management
 - [ ] Product Management
 - [ ] Service Management
 - [ ] Schedule Service
 
 ### **Technologies:**
-  - [HTML 5](https://www.w3schools.com/html/html5_intro.asp) 
+  - [HTML 5](https://www.w3schools.com/html/html5_intro.asp)  
   - [CSS](https://www.w3schools.com/css/)  
   - [JavaScript](https://www.javascript.com/) 
-  - [PHP](http://www.php.net/)
+  - [PHP](http://www.php.net/) /play deeper
   - [Bootstrap 4](https://getbootstrap.com/) 
-  - [Jquery](https://jquery.com/)
+  - [Jquery](https://jquery.com/) /play deeper
   - [MySql Database](https://www.mysql.com/)
 
 ### **System Features:**
@@ -29,3 +29,10 @@ The idea came when a friend told me that she'll open a Esthetic Shop, and that s
   - Name
   - Telephone
   - Address
+    - ZIP Code
+    - Street
+    - Number
+    - Neighborhood
+    - City
+    - Estate
+  - *ID is the primary key in the database*
