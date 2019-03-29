@@ -26,10 +26,6 @@
         if(isset($_GET['id'])){
             $userDAO = new UserDAO();
             $usuario = $userDAO->getById($_GET['id']);
-
-            if(!(isset($usuario))){
-                header('Location: index.php');
-            }
         }else{
             header('Location: index.php');
         }
@@ -144,7 +140,7 @@
                                             </label>
                                             <input id="imagem" name="imagem" type="file" accept="image/*">
                                             <input type="hidden" name="email" id="email" value="<?php echo $usuario['email'] ;?>">
-                                            <input type="hidden" name="id" id="id" value = "<?php echo $usuario['email'] ;?>">
+                                            <input type="hidden" name="id" id="id" value = "<?php echo $usuario['id'] ;?>">
                                         </form>
                                         <h5 class="text-success text-center"><strong><h3><?php echo $usuario['nome'] ;?></h3></strong></h5>
 
