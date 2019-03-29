@@ -9,6 +9,7 @@
     <title>Systhetics · Clientes</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
@@ -181,7 +182,8 @@
         </div>
 </body>
 <!--   Core JS Files   -->
-<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script> -->
 <script type="text/javascript" src="js/popper-1.14-7.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-4.3.1.min.js"></script>
 <script type="text/javascript" src="js/light-bootstrap-dashboard.js"></script>
@@ -189,6 +191,7 @@
 <script type="text/javascript" src="js/plugins/bootstrap-switch.js"></script>
 <script type="text/javascript" src="js/plugins/bootstrap-notify.js"></script>
 <script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript" src="js/consultaCEP.js"></script>
 
 
 </html>
