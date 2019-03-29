@@ -7,10 +7,9 @@
     $senha = $_POST['inputPassword'];
     $confirmar = $_POST['inputConfirmPassword'];
     $usuario['admin'] = $_POST['admin'];
-   // $origem = $_POST['origem'];
+    $origem = $_POST['origem'];
 
-    //$location = $origem == "nav" ? "Location:../index.php" : "Location:../adminUsuarios.php";
-    $location = "Location:../index.php";
+    $location = $origem == "index" ? "Location:../index.php" : "Location:../usuarios.php";
 
     if($senha != $confirmar){
         header($location . '?msg=errosenha');

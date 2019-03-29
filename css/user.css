@@ -1,3 +1,14 @@
 .btadd{
 	font-size: 16px;
 }
+
+#imagem{
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.pic{
+	object-fit: cover;
+	cursor: pointer;
+}

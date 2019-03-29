@@ -502,12 +502,17 @@ demo = {
         marker.setMap(map);
     },
 
-    showNotification: function(from, align) {
+    showNotification: function(from, align, message) {
         color = Math.floor((Math.random() * 4) + 1);
+        var msg = document.getElementById("msgAlert").value;
+        if (msg == "sucesso"){
+            msg = "Usuário cadastrado com sucesso!"
+        }
+
 
         $.notify({
             icon: "nc-icon nc-app",
-            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            message: "Sim"
 
         }, {
             type: type[color],

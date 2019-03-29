@@ -7,12 +7,14 @@ USE systhetics;
 #DROP TABLE IF EXISTS Usuario;
 
 CREATE TABLE IF NOT EXISTS Usuario (
-	email VARCHAR(64),
+	id INT AUTO_INCREMENT UNIQUE,
+	email VARCHAR(64) NOT NULL,
 	nome VARCHAR(128) NOT NULL,
 	senha VARCHAR(64) NOT NULL,
 	tel1 VARCHAR(16) NOT NULL,
 	tel2 VARCHAR(16),
 	admin TINYINT(1) DEFAULT 0,
+	foto VARCHAR(256) DEFAULT "img/usuario/default.png",
 	PRIMARY KEY(email)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 

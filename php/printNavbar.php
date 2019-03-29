@@ -42,10 +42,10 @@
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="" href="#">
-                                    <img class="rounded-circle mx-0" src="img/usuario/default.png" alt="Profile" width="32" height="32">   
+                                <a class="" href="./perfilUsuario.php?id=<?php echo $_SESSION['id']; ?>">
+                                    <img class="rounded-circle mx-0" src="<?php echo $_SESSION['foto']; ?>" alt="Profile" width="32" height="32">   
                                 </a>                                         
-                                <a class="nav-link" href="#">                 
+                                <a class="nav-link" href="./perfilUsuario.php?id=<?php echo $_SESSION['id']; ?>">                 
                                     <span><strong>
                                         <?php 
                                             $firstname = explode(" ", $_SESSION['nome']);
