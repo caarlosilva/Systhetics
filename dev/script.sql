@@ -33,6 +33,16 @@ CREATE TABLE IF NOT EXISTS Cliente (
 	PRIMARY KEY(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
+CREATE TABLE IF NOT EXISTS Produto (
+	id INT AUTO_INCREMENT UNIQUE,
+	nome VARCHAR(128) NOT NULL,
+	descricao VARCHAR(512),
+	preco DOUBLE NOT NULL,
+	quantidade DOUBLE DEFAULT 0,
+	foto VARCHAR(256) DEFAULT "img/produto/default.png",
+	PRIMARY KEY(id)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
 SET GLOBAL lc_time_names=pt_BR;
 SET NAMES utf8mb4;
 
@@ -60,3 +70,5 @@ INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("s@s.com", "
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("t@t.com", "Truta Alada", "t", "(16) 12345-6789", "(19) 12345-6789", 0);
 
 INSERT INTO Cliente (nome, tel1, tel2, cep, rua, num, complemento, bairro, cidade, estado) VALUES ("Carlos Eduardo Teixeira da Silva", "(16) 99755-0858", "(16) 33661-367", "13573059", "Joaquim Garcia de Oliveira", "882", "", "Cidade Aracy", "São Carlos", "SP");
+
+INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Creme de Chiclete", "Nem sei se existe irmão, só pra teste.", 15.6, 15);

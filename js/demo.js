@@ -169,7 +169,7 @@ demo = {
 
         var dataPreferences = {
             series: [
-                [2]
+                [25, 30, 20, 25]
             ]
         };
 
@@ -186,12 +186,10 @@ demo = {
 
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
-        
         Chartist.Pie('#chartPreferences', {
-            labels: ['7%', '71%', '22%'],
-            series: [7, 71, 22]
+            labels: ['53%', '36%', '11%'],
+            series: [53, 36, 11]
         });
-
 
 
         var dataSales = {
@@ -255,7 +253,7 @@ demo = {
         // lbd.startAnimationForLineChart(chartHours);
 
         var data = {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             series: [
                 [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
                 [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
@@ -263,7 +261,7 @@ demo = {
         };
 
         var options = {
-            seriesBarDistance: 5,
+            seriesBarDistance: 10,
             axisX: {
                 showGrid: false
             },
@@ -502,21 +500,17 @@ demo = {
         marker.setMap(map);
     },
 
-    showNotification: function(from, align, message) {
+    showNotification: function(from, align, msg, icon, colortype) {
         color = Math.floor((Math.random() * 4) + 1);
-        var msg = document.getElementById("msgAlert").value;
-        if (msg == "sucesso"){
-            msg = "Usuário cadastrado com sucesso!"
-        }
-
 
         $.notify({
-            icon: "nc-icon nc-app",
-            message: "Sim"
+            icon: icon,
+            message: msg 
 
         }, {
-            type: type[color],
-            timer: 8000,
+            //['primary', 'info', 'success', 'warning', 'danger'];
+            type: colortype,
+            timer: 3000,
             placement: {
                 from: from,
                 align: align

@@ -14,6 +14,10 @@ body {
   color: white;
 }
 
+.linkcad{
+  cursor: pointer;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -27,15 +31,6 @@ body {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
-}
-
-.modal{
-  color: black !important;
-}
-
-.ft-color{
-  background-color: #141414 !important ;
-  color: green !important;
 }
 
 .form-signin {

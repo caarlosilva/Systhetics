@@ -23,11 +23,33 @@
         //require "php/DAO/CategoriaDAO.php";
         $uDAO = new UserDAO(); 
         $busca = "";
-        $users = $uDAO->listar($busca);                
-    ?>
+        $users = $uDAO->listar($busca); 
+
+        if(isset($_GET['msg'])){
+            switch($_GET['msg']){
+                case "sucesso":
+                    $mensagem = "Usuário adicionado com sucesso!" ;
+                    $icon = 'nc-icon nc-single-02';
+                    $colortype = 'primary'; 
+                    break;
+                case "errosenha":
+                    $mensagem = "Acabou o pao de queijo brother!";
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger';
+                    break;
+                case "erroemail":
+                    $mensagem = "O e-mail inserido já existe!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                default:
+                    break;
+            }
+        }              
+    ?>    
 </head>
 
-<body>
+<body onload=" <?php if(isset($_GET['msg'])) { echo "demo.showNotification('top','center', '$mensagem', '$icon', '$colortype');"; } ?> ">
     <?php require_once "php/printMenu.php"?>
         <div class="main-panel">
             <!-- Navbar -->
@@ -55,7 +77,7 @@
                                         </div>
                                         
                                 <table class="table table-hover table-striped" width="100%">
-                                    <thead>
+                                    <thead class="">
                                         <th></th>
                                         <th>Nome</th>
                                         <th>E-mail</th>
@@ -169,21 +191,7 @@
                       </div>
                     </div>           
                   </div>
-                </form>
-
-    <div class="" tabindex="-1" role="dialog" aria-labelledby="modalMsg" aria-hidden="true" id="msgAlert" value="<?php 
-        if(isset($_GET['msg']))           
-            echo "msg";?>">            
-            <?php 
-            if(isset($_GET['msg'])){
-                switch($_GET['msg']){
-                    case "sucesso":
-                        echo '<script type="text/javascript" language="javascript"> demo.showNotification(); </script>' ;
-                        break;
-               }
-            }              
-            ?>    
-    </div>
+        </form>
 
         <?php require_once "php/printFooter.php"?>
     </div>
@@ -201,5 +209,6 @@
 <script type="text/javascript" src="js/demo.js"></script>
 <script type="text/javascript" src="js/modalAlert.js"></script>
 <script type="text/javascript" src="js/plugins/chartist.min.js"></script>
+<script type="text/javascript" src="js/jquery.mask.1.14.11.min.js"></script>
 <script type="text/javascript" src="js/masks.js"></script> 
 </html>

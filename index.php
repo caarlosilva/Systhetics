@@ -9,13 +9,57 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <!-- <meta name="generator" content="Jekyll v3.8.5">  -->
     <title>Systhetics · Login</title>
-
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="css/dashboard-style.css" rel="stylesheet" /> 
+    <link href="css/user.css" rel="stylesheet" type="text/css" >
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" type="text/CSS" rel="stylesheet">
     <link href="css/bootstrap.css" type="text/CSS" rel="stylesheet">
     <link href="css/signin.css" type="text/CSS" rel="stylesheet">
+
+    <?php 
+        if(isset($_GET['msg'])){
+            switch($_GET['msg']){
+                case "sucesso":
+                    $mensagem = "Usuário adicionado com sucesso!" ;
+                    $icon = 'nc-icon nc-single-02';
+                    $colortype = 'primary'; 
+                    break;
+                case "errosenha":
+                    $mensagem = "Acabou o pao de queijo brother!";
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger';
+                    break;
+                case "erroemail":
+                    $mensagem = "O e-mail inserido já existe!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                case "usernormal":
+                    $mensagem = "Ainda não existe suporte para usuário comum! Por favor, entre com um usuario Administrador." ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                case "errologin":
+                    $mensagem = "Dados inválidos! Por favor, insira-os corretamente." ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                default:
+                    break;
+            }
+        }              
+    ?>    
+
   </head>
-  <body class="text-center">
+
+  <body class="text-center" onload=" <?php if(isset($_GET['msg'])) { echo "demo.showNotification('top','center', '$mensagem', '$icon', '$colortype');"; } ?> ">
 
     <form class="form-signin" method="POST" action="php/login.php">
       <img class="mb-4" src="img/logo.png" alt="" width="72" height="72">
@@ -36,69 +80,74 @@
       -->
       </div>
       <button class="btn btn-lg btn-success btn-block" type="submit">Entrar</button>
-      <p> Não tem uma conta? <a href="cadastro.php">Cadastrar-se</a></p>
+      <p> Não tem uma conta? <a class="text-success linkcad" data-toggle="modal" data-target="#modalCadastroUsuario">Cadastre-se</a></p>
     </form>
 
-    <div class="modal fade myAlert" tabindex="-1" role="dialog" aria-labelledby="modalMsg" aria-hidden="true" id="modal<?php 
-            if(isset($_GET['msg'])){
-                if($_GET['msg'] == "errosenha" || $_GET['msg'] == "useradmin" || $_GET['msg'] == "usernormal" || $_GET['msg'] == "errologin" || $_GET['msg'] == "negadouser" || $_GET['msg'] == "negadoadmin" || $_GET['msg'] == "erroImagem" || $_GET['msg'] == "sucessoImagem"){
-                    echo "Msg";?>" >
-            <div class="modal-dialog myAlert" role="document">
-                <div class="modal-content myAlert">                 
-                    <div class="modal-body myAlert">
-                        <?php 
-                            switch($_GET['msg']){
-                                case "errosenha":{ ?>
-                                    <p><span class="font-weight-bold myAlert">ERRO</span><br> Verifique se a senha digitada é igual nos 2 campos!</p>
-                                <?php break;
-                                }
-                                case "useradmin":{ ?>
-                                    <p>Olá, <?php echo isset($_SESSION['nome']) ?> ! <br> Você está logado como Administrador!</p>
-                                <?php break;
-                                }
-                                case "usernormal":{ ?>
-                                    <p>Olá, <?php echo isset($_SESSION['nome']) ?> ! <br> Você está logado como Usuário Comum!</p>
-                                <?php break;
-                                }
-                                case "negadouser":{ ?>
-                                    <p><span class="font-weight-bold">Erro:</span> você precisa estar logado para acessar esse conteúdo!</p>
-                                <?php break;
-                                }
-                                case "negadoadmin":{ ?>
-                                    <p><span class="font-weight-bold">Erro:</span> você não tem permissão para acessar esse conteúdo!</p>
-                                <?php break;
-                                }
-                                case "errologin":{ ?>
-                                    <p><span class="font-weight-bold myAlert">ERRO</span><br> Verifique se o e-mail e senha digitados</p>
-                                <?php break;
-                                }
-                                case "erroImagem":{ ?>
-                                    <p><span class="font-weight-bold">Erro:</span> o formato da imagem enviada não é suportado!</p>
-                                <?php break;
-                                }
-                                case "sucessoImagem":{ ?>
-                                    <p>Imagem alterada com sucesso!</p>
-                                <?php break;
-                                }
-                            }
-                        ?>
+    <form class="form row-form justify-content-center" action="php/cadastroUsuario.php" method="POST">
+        <div class="modal fade" id="modalCadastroUsuario" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="text-body text-center modal-title">Cadastro de Usuário</h3>
                     </div>
-                      <button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                              <label for="inputEmail">E-mail</label>
+                              <input type="email" class="form-control inpt" id="inputEmail" name="inputEmail" placeholder="ex. jorge@ben.jor" required autofocus>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <label for="inputName">Nome Completo</label>
+                              <input type="name" class="form-control inpt" id="inputName" name="inputName" placeholder="ex. Jorge Ben Jor" required>
+                            </div>
+                        </div> 
+                            <div class="row">        
+                                <div class="col">
+                                    <label for="inputTel1">Telefone 1</label>
+                                    <input type="tel" class="form-control inpt" id="inputTel1" name="inputTel1" placeholder="(00) 00000-0000" required>
+                                </div>
+                                <div class="col">
+                                    <label for="inputTel2">Telefone 2</label>
+                                    <input type="tel" class="form-control inpt" id="inputTel2" name="inputTel2" placeholder="(00) 00000-0000">
+                                </div>
+                            </div>  
+                            <div class="row"> 
+                                <div class="col">
+                                    <label for="inputPassword">Senha</label>
+                                    <input type="password" class="form-control inpt" id="inputPassword" name="inputPassword" placeholder="Senha" required>
+                                </div>
+                                <div class="col">
+                                    <label for="inputConfirmPassword">Confirme a Senha</label>
+                                    <input type="password" class="form-control inpt" id="inputConfirmPassword" name="inputConfirmPassword" placeholder="Confirme a Senha" required>
+                                </div>
+                                <input type="hidden" name="origem" value="index">
+                          </div>                  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                    </div>
                 </div>
-            </div>
-            <?php }
-            } ?>
+            </div>           
         </div>
+    </form>
 
-    <footer class="footer mt-auto fixed-bottom text-center ft-color">
-        <div class="container">
-            <span class="text-muted text-success">&copy; DevOrion - 2019</span>
-        </div>
+    <footer class="my-2 fixed-bottom  text-center">
+        <span class="text-white text-muted mt-2">&copy; DevOrion - 2019</span>
     </footer>     
-    <!-- SCRIPTS -->
-    <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
-    <script type="text/javascript" src="js/popper-1.14-7.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-4.3.1.min.js"></script>
-    <script type="text/javascript" src="js/modalAlert.js"></script>
+    <!-- SCRIPTS --> 
 </body>
+<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="js/popper-1.14-7.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-4.3.1.min.js"></script>
+<script type="text/javascript" src="js/light-bootstrap-dashboard.js"></script>
+
+<script type="text/javascript" src="js/plugins/bootstrap-switch.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap-notify.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript" src="js/modalAlert.js"></script>
+<script type="text/javascript" src="js/jquery.mask.1.14.11.min.js"></script>
+<script type="text/javascript" src="js/masks.js"></script> 
 </html>

@@ -1,9 +1,9 @@
-<footer class="footer ft-color">
+<footer class="footer text-muted">
     <div class="container">
         <nav>
-            <ul class="footer-menu">
+            <ul class="footer-menu ">
                 <li>
-                    <a class="text-success text-left">
+                    <a class="text-muted text-left">
                         Siga nossas redes sociais
                     </a>                      
                 </li>
@@ -19,7 +19,7 @@
                 </li>
             </ul>
         <p class="copyright text-right">                        
-            <span class="text-light">&copy; DevOrion - 
+            <span class="text-light text-muted">&copy; DevOrion - 
                 <script>
                     document.write(new Date().getFullYear())
                 </script>
