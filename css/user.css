@@ -12,3 +12,18 @@
 	object-fit: cover;
 	cursor: pointer;
 }
+
+.borderless {
+    border: none !important;
+	background: transparent !important;
+    font-size: 32px;
+    text-align: center;
+}
+
+.borderless:hover{
+	background: #98999b !important;
+}
+
+.desc{
+	resize: none;
+}

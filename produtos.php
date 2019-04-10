@@ -16,11 +16,26 @@
     <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="css/dashboard-style.css" rel="stylesheet" /> 
+    <link href="css/user.css" rel="stylesheet" type="text/css" >
 
     <?php require "DAO/produtoDAO.php";
         $produtoDAO = new ProdutoDAO(); 
         $busca = ""; 
         $produtos = $produtoDAO->listar($busca);
+        if(isset($_GET['id'])){
+            $prodView = $produtoDAO->get($_GET['id']);
+            if(!isset($prodView)){
+                header('location:produtos.php');
+            }
+        }
+        else{
+            $prodView['id']=0;
+            $prodView['nome']='Nome do Produto';
+            $prodView['descricao']='Essa é a descrição do produto. Para editar um produto, clique em seus respectivos campos.';
+            $prodView['foto']='img/produto/default.png';
+            $prodView['preco']=1.99;
+            $prodView['quantidade']=10;
+        }
     ?>
 
 </head>
@@ -34,29 +49,38 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-7">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Produtos</h4>
+                                    <p class="card-category">Produtos disponíveis para venda</p>
                                 </div>
                                 <div class="card-body">
-                                    <ul class="list-group list-group-flush">
+                                    <div class="row mb-3">
+                                        <div class="col-2 ml-3" >
+                                            <a class="btn btn-success form-control" role="button" data-toggle="modal" data-target="#modalCadastroUsuario">
+                                                <i><strong> Novo</strong></i>
+                                            </a>
+                                        </div>
+                                        <div class="col mr-3">
+                                            <input class="form-control" type="search" name="search" placeholder="Pesquisar">
+                                        </div>                                           
+                                    </div>
+                                    <div class="list-group list-group-flush">
                                         <?php
                                         if(count($produtos) != 0){
                                             foreach($produtos as $produto){
                                                 ?>
-                                                <li class="list-group-item text-center d-flex justify-content-between align-items-center">
-                                                    <a href="">
-                                                        <img class=""src="<?php echo $produto['foto']; ?>" width="64" height="64">                                  
-                                                    </a>
+
+                                                <a href="produtos.php?id=<?php echo $produto['id'];?>" class="list-group-item text-center d-flex justify-content-between align-items-center list-group-item-action">
+                                                    <img class="pic"src="<?php echo $produto['foto']; ?>" width="64" height="64">                                  
                                                     <p>
-                                                        <strong><?php echo $produto['nome']; ?></strong> <br>                                                  
+                                                        <?php echo $produto['nome']; ?><br>                                                  
                                                         <span> R$: <?php echo $produto['preco']; ?></span>
                                                     </p>
-                                                    
+                                                    <span class="badge <?php if ($produto['quantidade'] <= 0) { echo 'badge-danger';}elseif($produto['quantidade'] <= 10){echo 'badge-warning';}else{ echo 'badge-primary';}?> badge-pill">Quantidade: <?php echo $produto['quantidade'];?></span>
+                                                </a>
 
-                                                    <span class="badge badge-primary badge-pill">Quantidade: <?php echo $produto['quantidade']; ?></span>
-                                                </li>
                                             <?php
                                             }
                                         }
@@ -73,60 +97,79 @@
                                             <?php 
                                         }
                                         ?>
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- -->
 
-                        <div class="col-md-7">
+                        <div class="col-md-5">
                             <div class="card card-user">
                                 <div class="card-image">
-                                    <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                                    <img class="img-cover" src="img/banner.jpg" alt="...">
                                 </div>
                                 <div class="card-body">
                                     <div class="author">
-                                        <form id="formImagem" name="formImagem" action="php/atualizarImagem.php" method="POST" enctype="multipart/form-data">
+                                        <form id="formImagem" name="formImagem" action="php/atualizarImagemProduto.php" method="POST" enctype="multipart/form-data">
                                             <label for="imagem">                           
                                                 <p class="mt-1">
-                                                    <img class="avatar pic border-gray imgperfil" src="<?php echo $usuario['foto'] ;?>" alt="profile">
-                                                </p>
-                                                
+                                                    <img class="avatar pic border-gray imgperfil" src="<?php echo $prodView['foto'] ;?>" alt="profile">
+                                                </p>    
                                             </label>
                                             <input id="imagem" name="imagem" type="file" accept="image/*">
-                                            <input type="hidden" name="email" id="email" value="<?php echo $usuario['email'] ;?>">
-                                            <input type="hidden" name="id" id="id" value = "<?php echo $usuario['id'] ;?>">
+                                            <input type="hidden" name="email" id="email" value="<?php echo $prodView['nome'] ;?>">
+                                            <input type="hidden" name="id" id="id" value = "<?php echo $prodView['id'] ;?>">
                                         </form>
-                                        <h5 class="text-success text-center"><strong><h3><?php echo $usuario['nome'] ;?></h3></strong></h5>
 
-                                        
+                                        <form id="formProduto" name="formProduto" action="" method="POST">
+                                            <div class="row">
+                                                <div class="col mx-2 ">
+                                                  <label for="nome"></label>
+                                                  <input type="productname" class="text-success form-control inpt borderless" id="nome" name="nome" value="<?php echo $prodView['nome'] ;?>" required>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="col mx-2">
+                                                    <textarea class="form-control desc my-3" rows="5" name="description" id="description" form="formProduto"><?php echo $prodView['descricao'];?> </textarea>
+                                                </div>       
+                                              </div>
 
-                                        <p class="description">
-                                            <h4><?php echo $usuario['email'] ;?></h4>
-                                        </p>
-                                    </div>
-                                             
-                                    <p class="description text-center">
-                                        <strong><h4 class="text-center">
-                                        <?php echo $usuario['tel1'] ;?> <br>
-                                        <?php echo $usuario['tel2'] ;?> <br>
-                                        <br>
-                                        <span class="text-info"> <?php if($usuario['admin'] == 0){echo 'Usuário Comum'; } else { echo 'Administrador';} ?> </span>                                      
-                                        </strong> </h4>   
-                                    </p>
+                                                <div class="row">
+                                                  <div class="col mx-2">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="basic-addon1">R$</span>
+                                                            </div>
+                                                            <input type="price" class="form-control" placeholder="2019,99" aria-label="price" aria-describedby="price" value="<?php echo $prodView['preco'] ;?>">
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="col mx-2">
+                                                      <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="basic-addon1">UN</span>
+                                                            </div>
+                                                            <input type="quantity" class="form-control" placeholder="10" aria-label="price" aria-describedby="price" value="<?php echo $prodView['quantidade'] ;?>">
+                                                        </div>
+                                                  </div>
+                                                </div>
+                                                <hr>
+                                                <button type="submit" class="btn btn-primary btn-fill pull-right mx-2 mt-2" <?php if($prodView['id']==0){ echo 'disabled';}?>>Atualizar</button>                                  
+                                        </form>
+                                    </div>             
                                 </div>
                             </div>
                         </div>                                         
                 </div>
-
+            <!--
             <div class="row">
                 <?php
                 if(count($produtos) != 0){
                     foreach($produtos as $produto){
                         ?>
 
-                        <!--
+                        
                         <div class="col-md-auto content-align-center px-auto">
                             <div class="card" style="width: 14rem;">
                                 <img class="card-img-top" src="<?php echo $produto['foto']; ?>">
@@ -139,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                    -->
+                    
                     <?php
                     }
                 }
@@ -157,11 +200,14 @@
                 }
                 ?>
         </div>
+        -->
         </div>
         </div>
+        <?php require_once "php/printFooter.php"?> 
         </div>
+
         </div> 
-        <?php require_once "php/printFooter.php"?>    
+   
     </div>
 </body>
 <!--   Core JS Files   -->
@@ -174,5 +220,13 @@
 <script type="text/javascript" src="js/plugins/bootstrap-notify.js"></script>
 <script type="text/javascript" src="js/light-bootstrap-dashboard.js"></script>
 <script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript">   
+    $(document).ready(function () {
+        $('#formImagem').on('change', "input#imagem", function (e) {
+            e.preventDefault();
+            $("#formImagem").submit();
+        });
+    });
+</script>
 
 </html>

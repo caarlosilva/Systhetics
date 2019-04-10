@@ -49,7 +49,7 @@ SET NAMES utf8mb4;
 #INSERTS
 
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("a@a.com", "Administrador Geral", "a", "(16) 12345-6789", "(19) 12345-6789", 1);
-INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("b@b.com", "Barbara Palhaça Retardada Demais", "b", "(16) 12345-6789", "", 1);
+INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("b@b.com", "Barba Prefeito", "b", "(16) 12345-6789", "", 1);
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("c@c.com", "Cleitin Silva", "c", "(16) 12345-6789", "(11) 12345-6789", 1);
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("d@d.com", "Dado Dolabella", "d", "(16) 12345-6789", "(19) 12345-6789", 0);
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("e@e.com", "Ednaldo Pereira", "e", "(16) 12345-6789", "(19) 12345-6789", 0);
@@ -72,3 +72,6 @@ INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("t@t.com", "
 INSERT INTO Cliente (nome, tel1, tel2, cep, rua, num, complemento, bairro, cidade, estado) VALUES ("Carlos Eduardo Teixeira da Silva", "(16) 99755-0858", "(16) 33661-367", "13573059", "Joaquim Garcia de Oliveira", "882", "", "Cidade Aracy", "São Carlos", "SP");
 
 INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Creme de Chiclete", "Nem sei se existe irmão, só pra teste.", 15.6, 15);
+INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Manteiga de Cacau", "Aquela parada q tu só usa quando ta sem boca já", 7.50, 87);
+INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Óleo de Cozinha", "Geralmente substituido por margarina na hora de fritar as coisas", 8.99, 2);
+INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Shampoo Betina", "Pra dar aquela investida no cabelo", 1502, 0);

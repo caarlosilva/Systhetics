@@ -20,7 +20,6 @@
 
     <!--     -->   
     <?php require "DAO/userDAO.php";
-        //require "php/DAO/CategoriaDAO.php";
         $uDAO = new UserDAO(); 
         $busca = "";
         $users = $uDAO->listar($busca); 
@@ -125,13 +124,11 @@
                                                             <input type="hidden" name="inputEmail" value="<?php echo $user['email']; ?>">
                                                             <?php 
                                                             if($user['admin'] == 0){
-                                                                $nome = $user['nome'];
-                                                                $email = $user['email'];
-                                                                echo  ' <input type="image" src="img/remove.png" width="32px" height="24px" onclick="showAlert("'.$nome.'","'.$email.'","remover")"> ';
-                                                            }else{
-
-                                                            } 
+                                                                $firstname = explode(" ", $user['nome']);
+                                                                echo  "<input type=image src=img/remove.png width=32px height=24px onclick=showAlert('".$firstname[0]."','".$user['email']."','remover')>";
+                                                            }
                                                             ?>
+
                                                         </a>
                                                     <!-- </form> -->        
                                                     </td>
@@ -240,9 +237,16 @@
                 url: 'php/atualizarUsuario.php',
                 method: 'POST', 
             });
+            window.location = 'usuarios.php?msg=usuarioremovido';     
+            sleep(1000).then(() => {
+                location.reload(true);
+            })
+            
         }
         else{// Usuário clicar em cancelar
         }
+        
+
     }
 </script>
 

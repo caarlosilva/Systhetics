@@ -28,7 +28,6 @@
         $userDAO->remove($usuario['email']);
         header('Location:../usuarios.php?msg=usuarioremovido');
     }else{
-
     }
      
 ?>

@@ -65,20 +65,9 @@
             return lerResultado($resultado);
         }
 
-        function get($email){
+        function get($id){
             $conexao = conectar();
-            $query = "SELECT id, email, nome, senha, tel1, tel2, admin, foto FROM produto WHERE email = ?;";
-            $stmt = mysqli_prepare($conexao,$query);
-            mysqli_stmt_bind_param($stmt,"s",$email);
-            $resultado = executar_SQL($conexao,$stmt);
-            desconectar($conexao);
-
-            return lerResultado($resultado)[0];
-        }
-
-        function getById($id){
-            $conexao = conectar();
-            $query = "SELECT id, email, nome, senha, tel1, tel2, admin, foto FROM produto WHERE id = ?;";
+            $query = "SELECT id, nome, descricao, preco, quantidade, foto FROM produto WHERE id = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"i",$id);
             $resultado = executar_SQL($conexao,$stmt);
@@ -86,6 +75,7 @@
 
             return lerResultado($resultado)[0];
         }
+
 
         function login($email,$senha){
             $conexao = conectar();
