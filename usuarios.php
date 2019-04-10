@@ -25,6 +25,10 @@
         $busca = "";
         $users = $uDAO->listar($busca); 
 
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         if(isset($_GET['msg'])){
             switch($_GET['msg']){
                 case "sucesso":
@@ -41,6 +45,11 @@
                     $mensagem = "O e-mail inserido já existe!" ;
                     $icon = 'nc-icon nc-simple-remove';
                     $colortype = 'danger'; 
+                    break;
+                case "usuarioremovido":
+                    $mensagem = "Usuário removido com sucesso!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'success'; 
                     break;
                 default:
                     break;
@@ -84,15 +93,19 @@
                                         <th>Telefone 1</th>
                                         <th>Telefone 2</th>
                                         <th>Admin</th>
-                                        <th></th>
+                                        <th>Remover</th>
                                     </thead>
                                     <tbody>
                                     <?php
                                     if(count($users) != 0){
                                         foreach($users as $user){?>
                                             <div class="col px-0 mb-4">
-                                                <tr>
-                                                    <td><img class="rounded-circle ml-2 pic" src="<?php echo $user['foto']; ?>" width='24' height='24'></td>
+                                                <tr>                               
+                                                    <td>
+                                                        <a class="text-right" href="perfilUsuario.php?id=<?php echo $user['id']; ?>">
+                                                            <img class="rounded-circle ml-2 pic" href="perfilUsuario.php?id=<?php echo $user['id']; ?>" src="<?php echo $user['foto']; ?>" width='24' height='24'>
+                                                        </a>
+                                                    </td>
                                                     <td><?php echo $user['nome']; ?></td>
                                                     <td><?php echo $user['email']; ?></td>
                                                     <td><?php echo $user['tel1']; ?></td>
@@ -105,17 +118,22 @@
                                                     }
                                                     ?>                                                  
                                                     </td>
+                                                    <!-- <form action="php/atualizarUsuario.php" method="POST">   -->
                                                     <td class="text-right">
-                                                    <a class="text-right" href="perfilUsuario.php?id=<?php echo $user['id']; ?>">
-                                                        <img class="mr-2" src="img/view.png" alt="View" width="24px" height="24px">
-                                                    </a>
-                                                    <form action="php/atualizarUsuario.php" method="POST">
-                                                        <a class="text-right" href="">
+                                                        <a class="text-right">
                                                             <input type="hidden" name="operacao" value="remover">
                                                             <input type="hidden" name="inputEmail" value="<?php echo $user['email']; ?>">
-                                                            <input type="image" src="img/remove.png" width="24px" height="24px" alt="submit">
+                                                            <?php 
+                                                            if($user['admin'] == 0){
+                                                                $nome = $user['nome'];
+                                                                $email = $user['email'];
+                                                                echo  ' <input type="image" src="img/remove.png" width="32px" height="24px" onclick="showAlert("'.$nome.'","'.$email.'","remover")"> ';
+                                                            }else{
+
+                                                            } 
+                                                            ?>
                                                         </a>
-                                                    </form>        
+                                                    <!-- </form> -->        
                                                     </td>
                                                 </tr>
                                             </div>
@@ -192,7 +210,6 @@
                     </div>           
                   </div>
         </form>
-
         <?php require_once "php/printFooter.php"?>
     </div>
 
@@ -211,4 +228,22 @@
 <script type="text/javascript" src="js/plugins/chartist.min.js"></script>
 <script type="text/javascript" src="js/jquery.mask.1.14.11.min.js"></script>
 <script type="text/javascript" src="js/masks.js"></script> 
+<!-- -->
+
+<script type="text/javascript">
+    function showAlert(nome, email, operacao){
+        mensagem = "Você está prestes a remover o usuário \n" + nome +"( " + email + " ).\nDeseja Continuar?";
+        var r = confirm(mensagem);
+        if (r == true){ //Usuário clicar em OK
+            $.ajax({
+                data: 'inputEmail=' + email + '&operacao=' + operacao,
+                url: 'php/atualizarUsuario.php',
+                method: 'POST', 
+            });
+        }
+        else{// Usuário clicar em cancelar
+        }
+    }
+</script>
+
 </html>

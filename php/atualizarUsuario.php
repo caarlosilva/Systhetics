@@ -26,7 +26,7 @@
         header('Location:../perfilUsuario.php?id=' . $user['id']);
     }elseif ($operacao == "remover") {
         $userDAO->remove($usuario['email']);
-        header('Location:../usuarios.php');
+        header('Location:../usuarios.php?msg=usuarioremovido');
     }else{
 
     }
