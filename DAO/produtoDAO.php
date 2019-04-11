@@ -4,9 +4,9 @@
     class ProdutoDAO{
         function insert($produto){
             $conexao = conectar();
-            $query = "INSERT INTO produto (email, nome, senha, tel1, tel2, admin) VALUES (?,?,?,?,?,?);";
+            $query = "INSERT INTO produto (nome, descricao, preco, quantidade) VALUES (?,?,?,?);";
             $stmt = mysqli_prepare($conexao,$query);
-            mysqli_stmt_bind_param($stmt,"sssssi",$produto['email'],$produto['nome'],$produto['senha'],$produto['tel1'],$produto['tel2'], $produto['admin']);
+            mysqli_stmt_bind_param($stmt,"ssdd",$produto['nome'],$produto['descricao'],$produto['preco'],$produto['quantidade']);
             executar_SQL($conexao,$stmt);
             desconectar($conexao);
         }

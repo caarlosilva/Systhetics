@@ -36,11 +36,42 @@
             $prodView['preco']=1.99;
             $prodView['quantidade']=10;
         }
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(isset($_GET['msg'])){
+            switch($_GET['msg']){
+                case "sucesso":
+                    $mensagem = "Produto cadastrado com sucesso!" ;
+                    $icon = 'nc-icon nc-single-02';
+                    $colortype = 'primary'; 
+                    break;
+                case "errosenha":
+                    $mensagem = "Acabou o pao de queijo brother!";
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger';
+                    break;
+                case "erroemail":
+                    $mensagem = "O e-mail inserido já existe!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                case "usuarioremovido":
+                    $mensagem = "Usuário removido com sucesso!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'success'; 
+                    break;
+                default:
+                    break;
+            }
+        }
     ?>
 
 </head>
 
-<body>
+<body onload=" <?php if(isset($_GET['msg'])) { echo "demo.showNotification('top','center', '$mensagem', '$icon', '$colortype');"; } ?> ">
     <?php require_once "php/printMenu.php"?>
     <div class="main-panel">
         <!-- Navbar -->
@@ -58,7 +89,7 @@
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-2 ml-3" >
-                                            <a class="btn btn-success form-control" role="button" data-toggle="modal" data-target="#modalCadastroUsuario">
+                                            <a class="btn btn-success form-control" role="button" data-toggle="modal" data-target="#modalCadastroProduto">
                                                 <i><strong> Novo</strong></i>
                                             </a>
                                         </div>
@@ -72,13 +103,13 @@
                                             foreach($produtos as $produto){
                                                 ?>
 
-                                                <a href="produtos.php?id=<?php echo $produto['id'];?>" class="list-group-item text-center d-flex justify-content-between align-items-center list-group-item-action">
+                                                <a href="produtos.php?id=<?php echo $produto['id'];?>" class="list-group-item text-center d-flex justify-content-between align-items-center list-group-item-action <?php if($produto['id'] == $prodView['id']){ echo "active";}?>">
                                                     <img class="pic"src="<?php echo $produto['foto']; ?>" width="64" height="64">                                  
                                                     <p>
                                                         <?php echo $produto['nome']; ?><br>                                                  
                                                         <span> R$: <?php echo $produto['preco']; ?></span>
                                                     </p>
-                                                    <span class="badge <?php if ($produto['quantidade'] <= 0) { echo 'badge-danger';}elseif($produto['quantidade'] <= 10){echo 'badge-warning';}else{ echo 'badge-primary';}?> badge-pill">Quantidade: <?php echo $produto['quantidade'];?></span>
+                                                    <span class="badge <?php if ($produto['quantidade'] <= 0) { echo 'badge-danger';}elseif($produto['quantidade'] <= 10){echo 'badge-warning';}else{ echo 'badge-success';}?> badge-pill">Quantidade: <?php echo $produto['quantidade'];?></span>
                                                 </a>
 
                                             <?php
@@ -150,7 +181,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1">UN</span>
                                                             </div>
-                                                            <input type="quantity" class="form-control" placeholder="10" aria-label="price" aria-describedby="price" value="<?php echo $prodView['quantidade'] ;?>">
+                                                            <input type="quantity" class="form-control" placeholder="10" aria-label="quantity" aria-describedby="quantity" value="<?php echo $prodView['quantidade'] ;?>">
                                                         </div>
                                                   </div>
                                                 </div>
@@ -162,52 +193,61 @@
                             </div>
                         </div>                                         
                 </div>
-            <!--
-            <div class="row">
-                <?php
-                if(count($produtos) != 0){
-                    foreach($produtos as $produto){
-                        ?>
-
+        </div>
+        </div>
+        <form id="formProduto" name="formProduto" class="form row-form justify-content-center" action="php/cadastroProduto.php" method="POST">
+                  <div class="modal fade" id="modalCadastroProduto" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <h3 class="text-dark text-center">Novo Produto</h3>
+                        <div class="modal-body">
                         
-                        <div class="col-md-auto content-align-center px-auto">
-                            <div class="card" style="width: 14rem;">
-                                <img class="card-img-top" src="<?php echo $produto['foto']; ?>">
-                                <div class="card-body text-center">
-                                    <h4 class="card-title text-primary"><?php echo $produto['nome']; ?></h4>
-                                    <p class="card-text"><?php echo $produto['descricao']; ?></p>
+                        <div class="row">
+                            <div class="col mx-2 mb-3">
+                              <label for="nome">Nome do Produto</label>
+                              <input type="productname" class="form-control" id="nome" name="nome" placeholder="Produto" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mx-2">
+                                <label for="descricao">Descrição</label>
+                                <textarea name="descricao" id="descricao" class="form-control desc mb-3" required rows="5" ></textarea>
+                            </div>       
+                        </div>
+
+                        <div class="row">
+                            <div class="col mx-2">
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">R$</span>
+                                    </div>
+                                    <input type="price" class="form-control" placeholder="2019,99" name="preco" id="preco" required>
                                 </div>
-                                <div class="card-footer">
-                                    <a href="php/viewProduto.php?id=<?php echo $produto['id']; ?>" class="btn btn-block">Ver</a>
+                            </div>
+
+                            <div class="col mx-2">
+                                <div class="input-group ">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">UN</span>
+                                    </div>
+                                    <input type="quantity" name="quantidade" id="quantidade" class="form-control" placeholder="10" required>
                                 </div>
                             </div>
                         </div>
-                    
-                    <?php
-                    }
-                }
-                else{ 
-                    ?>
-                    <div class="col px-0">
-                        <div class="jumbotron jumbotron-fluid">
-                            <div class="container text-center">
-                                <h1>Nada encontrado! 😢</h1>
-                                <p>Não existem produtos cadastrados no sistema.</p>
-                            </div>
+
                         </div>
-                    </div>
-                    <?php 
-                }
-                ?>
-        </div>
-        -->
-        </div>
-        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger mx-2 " data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-success mx-2">Cadastrar</button>
+                        </div>
+                      </div>
+                    </div>           
+                  </div>
+        </form>
         <?php require_once "php/printFooter.php"?> 
         </div>
-
-        </div> 
-   
+        </div>   
     </div>
 </body>
 <!--   Core JS Files   -->
@@ -228,5 +268,6 @@
         });
     });
 </script>
+
 
 </html>
