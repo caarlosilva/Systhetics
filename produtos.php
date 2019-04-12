@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt--br">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Systhetics · Produtos</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -44,24 +44,14 @@
         if(isset($_GET['msg'])){
             switch($_GET['msg']){
                 case "sucesso":
-                    $mensagem = "Produto cadastrado com sucesso!" ;
-                    $icon = 'nc-icon nc-single-02';
+                    $mensagem = "Produto <strong>cadastrado</strong> com sucesso!" ;
+                    $icon = 'nc-icon nc-check-2';
                     $colortype = 'primary'; 
                     break;
-                case "errosenha":
-                    $mensagem = "Acabou o pao de queijo brother!";
-                    $icon = 'nc-icon nc-simple-remove';
-                    $colortype = 'danger';
-                    break;
-                case "erroemail":
-                    $mensagem = "O e-mail inserido já existe!" ;
-                    $icon = 'nc-icon nc-simple-remove';
-                    $colortype = 'danger'; 
-                    break;
-                case "usuarioremovido":
-                    $mensagem = "Usuário removido com sucesso!" ;
-                    $icon = 'nc-icon nc-simple-remove';
-                    $colortype = 'success'; 
+                case "produtoremovido":
+                    $mensagem = "Produto <strong>removido</strong> com sucesso!";
+                    $icon = 'nc-icon nc-check-2';
+                    $colortype = 'warning';
                     break;
                 default:
                     break;
@@ -153,7 +143,7 @@
                                             <input type="hidden" name="id" id="id" value = "<?php echo $prodView['id'] ;?>">
                                         </form>
 
-                                        <form id="formProduto" name="formProduto" action="" method="POST">
+                                        <form id="formAtualizaProduto" name="formAtualizaProduto" action="php/atualizarProduto.php" method="POST">
                                             <div class="row">
                                                 <div class="col mx-2 ">
                                                   <label for="nome"></label>
@@ -161,8 +151,9 @@
                                                 </div>
                                               </div>
                                               <div class="row">
-                                                <div class="col mx-2">
-                                                    <textarea class="form-control desc my-3" rows="5" name="description" id="description" form="formProduto"><?php echo $prodView['descricao'];?> </textarea>
+                                                <div class="col mx-2 text- mt-3">
+                                                    <label for="descricao">Descrição</label>
+                                                    <textarea class="form-control desc my-3" rows="5" name="descricao" id="descricao"><?php echo $prodView['descricao'];?> </textarea>
                                                 </div>       
                                               </div>
 
@@ -172,7 +163,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1">R$</span>
                                                             </div>
-                                                            <input type="price" class="form-control" placeholder="2019,99" aria-label="price" aria-describedby="price" value="<?php echo $prodView['preco'] ;?>">
+                                                            <input name="preco" id="preco" type="price" class="form-control" placeholder="2019,99" value="<?php echo $prodView['preco'] ;?>">
                                                         </div>
                                                   </div>
 
@@ -181,11 +172,14 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1">UN</span>
                                                             </div>
-                                                            <input type="quantity" class="form-control" placeholder="10" aria-label="quantity" aria-describedby="quantity" value="<?php echo $prodView['quantidade'] ;?>">
+                                                            <input name="quantidade" id="quantidade" type="quantity" class="form-control" value="<?php echo $prodView['quantidade'] ;?>">
                                                         </div>
                                                   </div>
                                                 </div>
                                                 <hr>
+                                                <input type="hidden" name="operacao" id="operacao" value="atualizar">
+                                                <input type="hidden" name="idProd" id="idProd" value="<?php echo $prodView['id']; ?>">
+                                                <button type="button" class="btn btn-danger btn-fill pull-left mx-2 mt-2" onclick='showAlert("<?php  echo $prodView['nome'] ?>","<?php  echo $prodView['id'] ?>","remover")' <?php if($prodView['id']==0){ echo 'disabled';}?>>Remover</button>  
                                                 <button type="submit" class="btn btn-primary btn-fill pull-right mx-2 mt-2" <?php if($prodView['id']==0){ echo 'disabled';}?>>Atualizar</button>                                  
                                         </form>
                                     </div>             
@@ -267,6 +261,29 @@
             $("#formImagem").submit();
         });
     });
+</script>
+
+<script type="text/javascript">
+    function showAlert(nome, id, operacao){
+        mensagem = "Você está prestes a remover o produto \n" + nome +".\nDeseja Continuar?";
+        var r = confirm(mensagem);
+        if (r == true){ //Usuário clicar em OK
+            $.ajax({
+                data: 'idProd=' + id + '&remover=' + operacao,
+                url: 'php/atualizarProduto.php',
+                method: 'POST', 
+            });
+            window.location = 'produtos.php?msg=produtoremovido';     
+            sleep(1000).then(() => {
+                location.reload(true);
+            })
+            
+        }
+        else{// Usuário clicar em cancelar
+        }
+        
+
+    }
 </script>
 
 

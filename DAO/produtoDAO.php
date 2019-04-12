@@ -13,24 +13,9 @@
 
         function update($produto){
             $conexao = conectar();
-            if($produto['senha'] != ""){
-                $query = "UPDATE produto SET nome = ?, tel1 = ?, tel2 = ?, senha = ?, admin = ? WHERE email = ?;";
-                $stmt = mysqli_prepare($conexao,$query);
-                mysqli_stmt_bind_param($stmt,"ssssis",$produto['nome'],$produto['tel1'],$produto['tel2'],$produto['senha'],$produto['admin'],$produto['email']);
-            }else{
-                $query = "UPDATE produto SET nome = ?, tel1 = ?, tel2 = ?, admin = ? WHERE email = ?;";
-                $stmt = mysqli_prepare($conexao,$query);
-                mysqli_stmt_bind_param($stmt,"sssis",$produto['nome'],$produto['tel1'],$produto['tel2'],$produto['admin'],$produto['email']);
-            }                      
-            executar_SQL($conexao,$stmt);
-            desconectar($conexao);
-        }
-
-        function updateSenha($produto){
-            $conexao = conectar();
-            $query = "UPDATE produto SET senha = ? WHERE email = ?;";
+            $query = "UPDATE produto SET nome = ?, descricao = ?, preco = ?, quantidade = ? WHERE id = ?;";
             $stmt = mysqli_prepare($conexao,$query);
-            mysqli_stmt_bind_param($stmt,"ss",$produto['senha'],$produto['email']);
+            mysqli_stmt_bind_param($stmt,"ssddi",$produto['nome'],$produto['descricao'],$produto['preco'],$produto['quantidade'],$produto['id']);                     
             executar_SQL($conexao,$stmt);
             desconectar($conexao);
         }
@@ -44,11 +29,11 @@
             desconectar($conexao);
         }
 
-        function remove($email){
+        function remove($id){
             $conexao = conectar();
-            $query = "DELETE FROM produto WHERE email = ?;";
+            $query = "DELETE FROM produto WHERE id = ?;";
             $stmt = mysqli_prepare($conexao,$query);
-            mysqli_stmt_bind_param($stmt,"s",$email);
+            mysqli_stmt_bind_param($stmt,"i",$id);
             executar_SQL($conexao,$stmt);
             desconectar($conexao);
         }

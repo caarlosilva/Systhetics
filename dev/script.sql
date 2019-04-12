@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
 	bairro VARCHAR(64),
 	cidade VARCHAR(64),
 	estado VARCHAR(64),
+	foto VARCHAR(256) DEFAULT "img/cliente/default.png",
 	PRIMARY KEY(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 

@@ -16,17 +16,48 @@
     <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="css/dashboard-style.css" rel="stylesheet" /> 
+    <link href="css/style.css" rel="stylesheet" type="text/css" >
 
     <!--     -->   
     <?php require "DAO/clienteDAO.php";
-        //require "php/DAO/CategoriaDAO.php";
         $cDAO = new ClienteDAO(); 
         $busca = "";
-        $clientes = $cDAO->listar($busca);                
+        $clientes = $cDAO->listar($busca);  
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(isset($_GET['msg'])){
+            switch($_GET['msg']){
+                case "sucesso":
+                    $mensagem = "Cliente <strong>adicionado</strong> com sucesso!" ;
+                    $icon = 'nc-icon nc-single-02';
+                    $colortype = 'primary'; 
+                    break;
+                case "errosenha":
+                    $mensagem = "As senhas informadas diferem entre si. Por favor, tente novamente!";
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger';
+                    break;
+                case "erroemail":
+                    $mensagem = "O e-mail inserido já existe!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                case "clienteremovido":
+                    $mensagem = "Cliente <strong>removido</strong> com sucesso!" ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'warning'; 
+                    break;
+                default:
+                    break;
+            }
+        }                            
     ?>
 </head>
 
-<body>
+<body onload=" <?php if(isset($_GET['msg'])) { echo "demo.showNotification('top','center', '$mensagem', '$icon', '$colortype');"; } ?> ">
     <?php require_once "php/printMenu.php"?>
         <div class="main-panel">
             <!-- Navbar -->
@@ -55,13 +86,12 @@
 
                                     <table class="table table-hover table-striped" width="100%">
                                         <thead>
-                                            <th>ID</th>
+                                            <th></th>
                                             <th>Nome</th>
                                             <th>Telefone 1</th>
-                                            <th>Rua</th>
+                                            <th>Endereço</th>
                                             <th>Cidade</th>
-                                            <th>Estado</th>
-                                            <th>Opções</th>
+                                            <th></th>
                                         </thead>
                                         <tbody>
                                             <?php
@@ -69,21 +99,18 @@
                                                     foreach($clientes as $cliente){?>
                                                         <div class="col px-0 mb-4">
                                                             <tr>
-                                                                <td><?php echo $cliente['id']; ?></td>
+                                                                <td>
+                                                                    <a class="text-right" href="perfilCliente.php?id=<?php echo $cliente['id']; ?>">
+                                                                        <img class="rounded-circle ml-2 pic" href="perfilCliente.php?id=<?php echo $cliente['id']; ?>" src="<?php echo $cliente['foto']; ?>" width='24' height='24'>
+                                                                    </a>
+                                                                </td>
                                                                 <td><?php echo $cliente['nome']; ?></td>
                                                                 <td><?php echo $cliente['tel1']; ?></td>
                                                                 <td><?php echo $cliente['rua'] . ", " . $cliente['num'];?></td>
-                                                                <td><?php echo $cliente['cidade']; ?></td>
-                                                                <td><?php echo $cliente['estado']; ?></td>
+                                                                <td><?php echo $cliente['cidade']; ?> - <?php echo $cliente['estado']; ?></td>
                                                                 <td class="text-right">
-                                                                <a href="">
-                                                                    <img class="mr-2" src="img/view.png" alt="View" width="24px" height="24px">
-                                                                </a>
-                                                                <a href="">
-                                                                    <img class="mr-2" src="img/remove.png" alt="Remove" width="24px" height="24px">
-                                                                </a>
-                                                                <a href="">
-                                                                    <img class="" src="img/edit.png" alt="Edit" width="24px" height="24px">
+                                                                <a>
+                                                                    <img class="mr-2" src="img/remove.png" alt="Remove" width="32px" height="24px" onclick='showAlert("<?php echo $cliente['nome'];?>", "<?php echo $cliente['id'];?>", "remover")'>
                                                                 </a>
                                                                 </td>
                                                             </tr>
@@ -94,7 +121,7 @@
                                                         <div class="jumbotron jumbotron-fluid">
                                                             <div class="container text-center">
                                                                 <h1>Nada encontrado! 😢</h1>
-                                                                <p>Nenhum usuário cadastrado no sistema.</p>
+                                                                <p>Nenhum cliente cadastrado no sistema.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,12 +137,11 @@
             </div>
 
                 <form class="form row-form justify-content-center" action="php/cadastroCliente.php" method="POST">
-                  <div class="modal fade" id="modalCadastroCliente" role="dialog">
+                  <div class="modal fade" id="modalCadastroCliente">
                     <div class="modal-dialog">
                       <div class="modal-content">
-                        <div class="modal-header"><h3 class="text-success text-center modal-title">Cadastro de Cliente</h3></div>
+                        <h3 class="text-dark text-center modal-title">Cadastro de Cliente</h3>
                         <div class="modal-body">
-                            
                                 <div class="row">
                                     <div class="col">
                                         <label class="mb-0 mt-2" for="nome">Nome</label>
@@ -130,22 +156,22 @@
                                     <div class="col">
                                         <label class="mb-0 mt-2" for="tel2">Telefone 2</label>
                                         <input type="tel" class="form-control" id="tel2" placeholder="(00) 00000-0000" name="tel2">
-                                    </div>                                                 
-                                </div>
-                                <div class="row">
+                                    </div>  
                                     <div class="col-3">
                                         <label class="mb-0 mt-2" for="cep">CEP</label>
-                                        <input type="cep" class="form-control" id="cep" placeholder="00000000" name="cep">
-                                    </div>
+                                        <input type="cep" class="form-control" id="cep" name="cep" placeholder="00000-000" required>
+                                    </div>                                                
+                                </div>
+                                <div class="row">           
                                     <div class="col">
                                         <label class="mb-0 mt-2" for="rua">Rua</label>
                                         <input type="address" class="form-control" id="rua" placeholder="Rua dos Bobos" name="rua">
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label class="mb-0 mt-2" for="num">N°</label>
-                                        <input type="num" class="form-control" id="num" placeholder="1278" name="num">
-                                    </div>                           
-                                </div>
+                                        <input type="num" class="form-control" id="num" placeholder="1278" name="num" required>
+                                    </div>  
+                                </div>                                                          
                                 <div class="row">
                                     <div class="col">
                                         <label class="mb-0 mt-2" for="complemento">Complemento</label>
@@ -181,8 +207,8 @@
         </div>
 </body>
 <!--   Core JS Files   -->
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-<!-- <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script> -->
+<!-- <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
+<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script> 
 <script type="text/javascript" src="js/popper-1.14-7.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-4.3.1.min.js"></script>
 <script type="text/javascript" src="js/light-bootstrap-dashboard.js"></script>
@@ -190,6 +216,29 @@
 <script type="text/javascript" src="js/plugins/bootstrap-switch.js"></script>
 <script type="text/javascript" src="js/plugins/bootstrap-notify.js"></script>
 <script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript" src="js/jquery.mask.1.14.11.min.js"></script>
+<script type="text/javascript" src="js/masks.js"></script> 
 <script type="text/javascript" src="js/consultaCEP.js"></script>
+
+<script type="text/javascript">
+    function showAlert(nome, id, operacao){
+        mensagem = "Você está prestes a remover o cliente \n" + nome +".\nDeseja Continuar?";
+        var r = confirm(mensagem);
+        if (r == true){ //Usuário clicar em OK
+            $.ajax({
+                data: 'id=' + id + '&operacao=' + operacao,
+                url: 'php/atualizarCliente.php',
+                method: 'POST', 
+            });
+            window.location = 'clientes.php?msg=clienteremovido';     
+            sleep(1000).then(() => {
+                location.reload(true);
+            })
+            
+        }
+        else{// Usuário clicar em cancelar
+        }      
+    }
+</script>
 
 </html>

@@ -41,7 +41,7 @@
             return lerResultado($resultado);
         }
 
-        function read($id){
+        function get($id){
             $conexao = conectar();
             $query = "SELECT * FROM Cliente WHERE id = ?;";
             $stmt = mysqli_prepare($conexao,$query);

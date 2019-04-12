@@ -31,12 +31,12 @@
         if(isset($_GET['msg'])){
             switch($_GET['msg']){
                 case "sucesso":
-                    $mensagem = "Usuário adicionado com sucesso!" ;
+                    $mensagem = "Usuário <strong>adicionado</strong> com sucesso!" ;
                     $icon = 'nc-icon nc-single-02';
                     $colortype = 'primary'; 
                     break;
                 case "errosenha":
-                    $mensagem = "Acabou o pao de queijo brother!";
+                    $mensagem = "As senhas informadas diferem entre si. Por favor, tente novamente!";
                     $icon = 'nc-icon nc-simple-remove';
                     $colortype = 'danger';
                     break;
@@ -46,9 +46,9 @@
                     $colortype = 'danger'; 
                     break;
                 case "usuarioremovido":
-                    $mensagem = "Usuário removido com sucesso!" ;
+                    $mensagem = "Usuário <strong>removido</strong> com sucesso!" ;
                     $icon = 'nc-icon nc-simple-remove';
-                    $colortype = 'success'; 
+                    $colortype = 'warning'; 
                     break;
                 default:
                     break;

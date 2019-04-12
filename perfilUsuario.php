@@ -27,7 +27,7 @@
             $userDAO = new UserDAO();
             $usuario = $userDAO->getById($_GET['id']);
         }else{
-            header('Location: index.php');
+            header('Location: usuarios.php');
         }
     ?>
     <title>Systhetics · Perfil de <?php $firstname = explode(" ", $usuario['nome']); echo  $firstname[0];?></title>
@@ -117,6 +117,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr>
                                         <input type="hidden" name="operacao" value="atualizar">
                                         <button type="submit" class="btn btn-primary btn-fill pull-right">Atualizar</button>
                                         <div class="clearfix"></div>
@@ -191,6 +192,7 @@
 <script type="text/javascript" src="js/demo.js"></script>
 <script type="text/javascript" src="js/modalAlert.js"></script>
 <script type="text/javascript" src="js/plugins/chartist.min.js"></script>
+<script type="text/javascript" src="js/jquery.mask.1.14.11.min.js"></script>
 <script type="text/javascript" src="js/masks.js"></script> 
 <script type="text/javascript">   
     $(document).ready(function () {
