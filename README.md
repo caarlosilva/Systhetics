@@ -5,7 +5,7 @@ The idea came when a friend told me that she'll open a Esthetic Shop, and that s
 - [X] Create Database
 - [X] User Management
 - [X] Client Management
-- [ ] Product Management
+- [X] Product Management
 - [ ] Service Management
 - [ ] Schedule Service
 
