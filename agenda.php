@@ -31,9 +31,6 @@
                     <div class="row">
                         <div class="col">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Agenda</h4>
-                                </div>
                                 <div class="card-body">
                                     <div class="page-header">
                                         
@@ -52,35 +49,13 @@
                                                 <button class="btn btn-warning active" data-calendar-view="month">Mês</button>
                                                 <button class="btn btn-warning" data-calendar-view="day">Dia</button>
                                             </div>
-                                        </div></div>
+                                        </div>
+                                    </div>
                                         <hr>
                                     <div class="row">
                                         <div class="col-md-8 ml-3">
-
-                                            <div id="showEventCalendar">                                   
-                                                <?php
-                                                    require("DAO/conn.php");
-                                                    $conexao = conectar();
-                                                    $query = "SELECT * FROM Agenda;";
-                                                    $resultset = mysqli_query($conexao, $query) or die("database error:". mysqli_error($conexao));
-                                                    $calendar = array();
-
-                                                    while( $rows = mysqli_fetch_assoc($resultset) ) {
-                                                    // convert date to milliseconds
-                                                        $start = strtotime($rows['start_date']) * 1000;
-                                                        $end = strtotime($rows['end_date']) * 1000;
-                                                        $calendar[] = array(
-                                                        'id' =>$rows['id'],
-                                                        'title' => $rows['title'],
-                                                        'url' => "#",
-                                                        "class" => 'event-important',
-                                                        'start' => "$start",
-                                                        'end' => "$end");
-                                                    }
-                                                    $calendarData = array("success" => 1, "result"=>$calendar);
-                                                    echo json_encode($calendarData);
-                                                    desconectar($conexao);
-                                                ?>
+                                            <div id="showEventCalendar">  
+                                                                            
                                             </div>
                                         </div>
                                         <div class="col-md-3 ">
@@ -106,6 +81,10 @@
 <script type="text/javascript" src="js/bootstrap-4.3.1.min.js"></script>
 <script type="text/javascript" src="js/light-bootstrap-dashboard.js"></script>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script type="text/javascript" src="js/calendar.js"></script>
+<script type="text/javascript" src="js/events.js"></script>
+
 <script type="text/javascript" src="js/plugins/bootstrap-switch.js"></script>
 <script type="text/javascript" src="js/plugins/bootstrap-notify.js"></script>
 <script type="text/javascript" src="js/demo.js"></script>
@@ -113,9 +92,7 @@
 <script type="text/javascript" src="js/masks.js"></script> 
 <script type="text/javascript" src="js/consultaCEP.js"></script>
 
-<script type="text/javascript" src="js/underscore-min.js"></script>
-<script type="text/javascript" src="js/calendar.js"></script>
-<script type="text/javascript" src="js/events.js"></script>
+
 </body>
 
 </html>

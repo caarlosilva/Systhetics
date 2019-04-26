@@ -1,7 +1,7 @@
 (function($) {
 	"use strict";
 	var options = {
-		events_source: 'agenda.php',
+		events_source: 'event.php',
 		view: 'month',
 		tmpl_path: 'tmpls/',
 		tmpl_cache: false,

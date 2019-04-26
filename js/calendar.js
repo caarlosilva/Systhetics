@@ -170,73 +170,83 @@ if(!String.prototype.formatNum) {
 		first_day: 2,
 		week_numbers_iso_8601: false,
 		holidays: {
-		'01-01': "Ano Novo",
-		'21-04': "Dia de Tiradentes",
-		'01-05': "Dia do Trabalhador",
-		'07-09': "Dia da Independência",
-		'12-10': "Nossa Senhora Aparecida",
-		'02-11': "Dia de Finados",
-		'15-11': "Proclamação da República",
-		'25-12': "Natal"
+			// January 1
+			'01-01': "New Year's Day",
+			// Third (+3*) Monday (1) in January (01)
+			'01+3*1': "Birthday of Dr. Martin Luther King, Jr.",
+			// Third (+3*) Monday (1) in February (02)
+			'02+3*1': "Washington's Birthday",
+			// Last (-1*) Monday (1) in May (05)
+			'05-1*1': "Memorial Day",
+			// July 4
+			'04-07': "Independence Day",
+			// First (+1*) Monday (1) in September (09)
+			'09+1*1': "Labor Day",
+			// Second (+2*) Monday (1) in October (10)
+			'10+2*1': "Columbus Day",
+			// November 11
+			'11-11': "Veterans Day",
+			// Fourth (+4*) Thursday (4) in November (11)
+			'11+4*4': "Thanksgiving Day",
+			// December 25
+			'25-12': "Christmas"
 		}
-		
 	};
 
 	var strings = {
-		error_noview:     'Calendar: View {0} não encontrada',
-	error_dateformat: 'Calendar: Formato de data inválido {0}. Deve ser "now" ou "yyyy-mm-dd"',
-	error_loadurl:    'Calendar: URL de carregamento de eventos não está atribuida',
-	error_where:      'Calendar: Direção de navegação errada {0}. Só pode ser "next", "prev" ou "today"',
-	error_timedevide: 'Calendário: parâmetro para o separador de hora deve dividir 60 por um número inteiro. Por exemplo, 10, 15, 30',
+		error_noview: 'Calendar: View {0} not found',
+		error_dateformat: 'Calendar: Wrong date format {0}. Should be either "now" or "yyyy-mm-dd"',
+		error_loadurl: 'Calendar: Event URL is not set',
+		error_where: 'Calendar: Wrong navigation direction {0}. Can be only "next" or "prev" or "today"',
+		error_timedevide: 'Calendar: Time split parameter should divide 60 without decimals. Something like 10, 15, 30',
 
-	title_year:  '{0}',
-	title_month: '{0} de {1}',
-	title_week:  '{1} - Semana {0}',
-	title_day:   '{0}, {1} de {2} de {3}',
+		no_events_in_day: 'No events in this day.',
 
-	week:        'Sem. {0}',
-	all_day:     'Durante todo o dia',
-	time:        'Tempo',
-	events:      'Desenvolvimentos',
-	before_time: 'Tempo antes da fita final',
-	after_time:  'End depois de uma fita temporária',
+		title_year: '{0}',
+		title_month: '{0} {1}',
+		title_week: 'week {0} of {1}',
+		title_day: '{0} {1} {2}, {3}',
 
-	m0:  'Janeiro',
-	m1:  'Fevereiro',
-	m2:  'Março',
-	m3:  'Abril',
-	m4:  'Maio',
-	m5:  'Junho',
-	m6:  'Julho',
-	m7:  'Agosto',
-	m8:  'Setembro',
-	m9:  'Outubro',
-	m10: 'Novembro',
-	m11: 'Dezembro',
+		week: 'Week {0}',
+		all_day: 'All day',
+		time: 'Time',
+		events: 'Events',
+		before_time: 'Ends before timeline',
+		after_time: 'Starts after timeline',
 
-	ms0:  'Jan',
-	ms1:  'Fev',
-	ms2:  'Mar',
-	ms3:  'Abr',
-	ms4:  'Mai',
-	ms5:  'Jun',
-	ms6:  'Jul',
-	ms7:  'Ago',
-	ms8:  'Set',
-	ms9:  'Out',
-	ms10: 'Nov',
-	ms11: 'Dez',
+		m0: 'January',
+		m1: 'February',
+		m2: 'March',
+		m3: 'April',
+		m4: 'May',
+		m5: 'June',
+		m6: 'July',
+		m7: 'August',
+		m8: 'September',
+		m9: 'October',
+		m10: 'November',
+		m11: 'December',
 
-	d0: 'Domingo',
-	d1: 'Segunda',
-	d2: 'Terça',
-	d3: 'Quarta',
-	d4: 'Quinta',
-	d5: 'Sexta',
-	d6: 'Sábado',
+		ms0: 'Jan',
+		ms1: 'Feb',
+		ms2: 'Mar',
+		ms3: 'Apr',
+		ms4: 'May',
+		ms5: 'Jun',
+		ms6: 'Jul',
+		ms7: 'Aug',
+		ms8: 'Sep',
+		ms9: 'Oct',
+		ms10: 'Nov',
+		ms11: 'Dec',
 
-	//easter:       'Easter',
-	//easterMonday: 'Easter Monday',
+		d0: 'Sunday',
+		d1: 'Monday',
+		d2: 'Tuesday',
+		d3: 'Wednesday',
+		d4: 'Thursday',
+		d5: 'Friday',
+		d6: 'Saturday'
 	};
 
 	var browser_timezone = '';
