@@ -1,9 +1,9 @@
 (function($) {
 	"use strict";
 	var options = {
-		events_source: '../agenda.php',
+		events_source: 'agenda.php',
 		view: 'month',
-		tmpl_path: '../tmpls/',
+		tmpl_path: 'tmpls/',
 		tmpl_cache: false,
 		day: '2018-02-28',
 		onAfterEventsLoad: function(events) {
@@ -20,7 +20,7 @@
 			});
 		},
 		onAfterViewLoad: function(view) {
-			$('.page-header h3').text(this.getTitle());
+			$('.page-header h2').text(this.getTitle());
 			$('.btn-group button').removeClass('active');
 			$('button[data-calendar-view="' + view + '"]').addClass('active');
 		},

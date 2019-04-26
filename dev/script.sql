@@ -44,6 +44,18 @@ CREATE TABLE IF NOT EXISTS Produto (
 	PRIMARY KEY(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
+
+CREATE TABLE IF NOT EXISTS Agenda (
+	id int AUTO_INCREMENT UNIQUE,
+	title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+	description varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+	start_date varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+	end_date varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+	created datetime NOT NULL,
+	status tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=Active, 0=Block',
+	PRIMARY KEY(id)
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 SET GLOBAL lc_time_names=pt_BR;
 SET NAMES utf8mb4;
 
@@ -76,3 +88,16 @@ INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Creme de Chicl
 INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Manteiga de Cacau", "Aquela parada q tu só usa quando ta sem boca já", 7.50, 87);
 INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Óleo de Cozinha", "Geralmente substituido por margarina na hora de fritar as coisas", 8.99, 2);
 INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Shampoo Betina", "Pra dar aquela investida no cabelo", 1502, 0);
+
+INSERT INTO Agenda (title, description, start_date, end_date, created, status) VALUES
+('This is a special events about web development', '', '2018-02-12 00:00:00', '2018-02-16 00:00:00', '2018-02-10 00:00:00', 1),
+('PHP Seminar 2018', '', '2018-02-11 00:00:00', '2018-02-17 00:00:00', '2018-02-10 00:00:00', 1),
+('Bootstrap events 2018', '', '2018-02-4 00:00:00', '2018-02-4 00:00:00', '2018-02-01 00:00:00', 1),
+('Developers events', '', '2018-02-04 00:00:00', '2018-02-04 00:00:00', '2018-02-01 00:00:00', 1),
+('Annual Conference 2018', '', '2018-02-05 00:00:00', '2018-02-05 00:00:00', '2018-02-01 00:00:00', 1),
+('Bootstrap Annual events 2018', '', '2018-02-05 00:00:00', '2018-02-05 00:00:00', '2018-02-01 00:00:00', 1),
+('HTML5 events', '', '2018-02-05 00:00:00', '2018-02-05 00:00:00', '2018-02-01 00:00:00', 1),
+('PHP conference events 2018', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-02 00:00:00', 1),
+('Web World events', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-01 00:00:00', 1),
+('Wave PHP 2018', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-02 00:00:00', 1),
+('Dev PHP 2018', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-01 00:00:00', 1);

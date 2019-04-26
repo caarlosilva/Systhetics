@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
@@ -37,7 +37,7 @@
                                 <div class="card-body">
                                     <div class="page-header">
                                         
-                                        <b><h3 class="text-center"></h3></b>
+                                        <b><h2 class="text-center"></h2></b>
                                         <br>
                                     </div>
                                     
@@ -59,13 +59,10 @@
 
                                             <div id="showEventCalendar">                                   
                                                 <?php
-                                                    include_once("DAO/conn.php");
+                                                    require("DAO/conn.php");
                                                     $conexao = conectar();
-                                                    $limite = 1;
-                                                    $query = "SELECT * FROM Agenda WHERE ?";
-                                                    $stmt = mysqli_prepare($conexao,$query);
-                                                    mysqli_stmt_bind_param($stmt,"i",$limite);
-                                                    $resultset = executar_SQL($conexao,$stmt);
+                                                    $query = "SELECT * FROM Agenda;";
+                                                    $resultset = mysqli_query($conexao, $query) or die("database error:". mysqli_error($conexao));
                                                     $calendar = array();
 
                                                     while( $rows = mysqli_fetch_assoc($resultset) ) {
@@ -80,9 +77,7 @@
                                                         'start' => "$start",
                                                         'end' => "$end");
                                                     }
-                                                    $calendarData = array(
-                                                    "success" => 1,
-                                                    "result"=>$calendar);
+                                                    $calendarData = array("success" => 1, "result"=>$calendar);
                                                     echo json_encode($calendarData);
                                                     desconectar($conexao);
                                                 ?>
