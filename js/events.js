@@ -5,7 +5,7 @@
 		view: 'month',
 		tmpl_path: 'tmpls/',
 		tmpl_cache: false,
-		day: '2018-02-28',
+		day: 'now',//'2018-02-28',
 		onAfterEventsLoad: function(events) {
 			if(!events) {
 				return;

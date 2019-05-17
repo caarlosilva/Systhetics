@@ -1,4 +1,5 @@
 <?php
+	date_default_timezone_set('America/Sao_Paulo');
 	require("DAO/conn.php");
 	$conexao = conectar();
 	$querySQL = "SELECT * FROM agenda LIMIT 20;";

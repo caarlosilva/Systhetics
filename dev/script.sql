@@ -44,17 +44,35 @@ CREATE TABLE IF NOT EXISTS Produto (
 	PRIMARY KEY(id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
+CREATE TABLE IF NOT EXISTS Servico (
+	id INT AUTO_INCREMENT UNIQUE,
+	nome VARCHAR(128) NOT NULL,
+	descricao VARCHAR(512),
+	tipo VARCHAR(64),
+	preco DOUBLE NOT NULL,
+	foto VARCHAR(256) DEFAULT "img/produto/default.png",
+	PRIMARY KEY(id)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
 CREATE TABLE IF NOT EXISTS Agenda (
 	id int AUTO_INCREMENT UNIQUE,
+	id_serv int NOT NULL,
+	id_cliente int NOT NULL,
+	id_usuario int NOT NULL,
 	title varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 	description varchar(255) COLLATE utf8_unicode_ci NOT NULL,
 	start_date varchar(50) COLLATE utf8_unicode_ci NOT NULL,
 	end_date varchar(50) COLLATE utf8_unicode_ci NOT NULL,
 	created datetime NOT NULL,
 	status tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=Active, 0=Block',
+	FOREIGN KEY (id_serv) REFERENCES Servico(id),
+	FOREIGN KEY (id_cliente) REFERENCES Cliente(id),
+	FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
 	PRIMARY KEY(id)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+
+
 
 SET GLOBAL lc_time_names=pt_BR;
 SET NAMES utf8mb4;
@@ -82,22 +100,31 @@ INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("r@r.com", "
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("s@s.com", "Sebastian Ingrosso", "s", "(16) 12345-6789", "(19) 12345-6789", 0);
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("t@t.com", "Truta Alada", "t", "(16) 12345-6789", "(19) 12345-6789", 0);
 
-INSERT INTO Cliente (nome, tel1, tel2, cep, rua, num, complemento, bairro, cidade, estado) VALUES ("Carlos Eduardo Teixeira da Silva", "(16) 99755-0858", "(16) 33661-367", "13573059", "Joaquim Garcia de Oliveira", "882", "", "Cidade Aracy", "São Carlos", "SP");
+INSERT INTO Cliente (nome, tel1, tel2, cep, rua, num, complemento, bairro, cidade, estado) VALUES 
+("Carlos Eduardo Teixeira da Silva", "(16) 99755-0858", "(16) 33661-367", "13573059", "Joaquim Garcia de Oliveira", "882", "", "Cidade Aracy", "São Carlos", "SP"),
+("Jorge Ben Jor", "(11) 99789-5389", "(16) 40028-922", "13573050", "Avenida Regit Arab", "190", "", "Cidade Aracy", "São Carlos", "SP");
 
-INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Creme de Chiclete", "Nem sei se existe irmão, só pra teste.", 15.6, 15);
-INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Manteiga de Cacau", "Aquela parada q tu só usa quando ta sem boca já", 7.50, 87);
-INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Óleo de Cozinha", "Geralmente substituido por margarina na hora de fritar as coisas", 8.99, 2);
-INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES ("Shampoo Betina", "Pra dar aquela investida no cabelo", 1502, 0);
+INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES 
+("Creme de Chiclete", "Nem sei se existe irmão, só pra teste.", 15.6, 15),
+("Manteiga de Cacau", "Aquela parada q tu só usa quando ta sem boca já", 7.50, 87),
+("Óleo de Cozinha", "Geralmente substituido por margarina na hora de fritar as coisas", 8.99, 2),
+("Shampoo Betina", "Pra dar aquela investida no cabelo", 1502, 0);
 
-INSERT INTO Agenda (title, description, start_date, end_date, created, status) VALUES
-('This is a special events about web development', '', '2018-02-12 00:00:00', '2018-02-16 00:00:00', '2018-02-10 00:00:00', 1),
-('PHP Seminar 2018', '', '2018-02-11 00:00:00', '2018-02-17 00:00:00', '2018-02-10 00:00:00', 1),
-('Bootstrap events 2018', '', '2018-02-4 00:00:00', '2018-02-4 00:00:00', '2018-02-01 00:00:00', 1),
-('Developers events', '', '2018-02-04 00:00:00', '2018-02-04 00:00:00', '2018-02-01 00:00:00', 1),
-('Annual Conference 2018', '', '2018-02-05 00:00:00', '2018-02-05 00:00:00', '2018-02-01 00:00:00', 1),
-('Bootstrap Annual events 2018', '', '2018-02-05 00:00:00', '2018-02-05 00:00:00', '2018-02-01 00:00:00', 1),
-('HTML5 events', '', '2018-02-05 00:00:00', '2018-02-05 00:00:00', '2018-02-01 00:00:00', 1),
-('PHP conference events 2018', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-02 00:00:00', 1),
-('Web World events', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-01 00:00:00', 1),
-('Wave PHP 2018', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-02 00:00:00', 1),
-('Dev PHP 2018', '', '2018-02-08 00:00:00', '2018-02-08 00:00:00', '2018-02-01 00:00:00', 1);
+INSERT INTO Servico (nome, descricao, tipo, preco) VALUES 
+("Limpeza de Pele", "Ducha completo na pessoa meu cumpadi", "Corporal", 50),
+("Esfoliação", "Uma lixa 3000 passando pelo seu corpo", "Corporal", 35),
+("Acumputura", "Vários prego na sua cabeça", "Facial", 40),
+("Massagem", "Uns chute na bunda e ta bom", "Corporal", 30);
+
+INSERT INTO Agenda (id_serv, id_cliente, id_usuario, title, description, start_date, end_date, created, status) VALUES
+(1, 1, 1, 'This is a special events about web development', '', '2019-05-22 00:00:00', '2019-05-26 00:00:00', '2019-05-10 00:00:00', 1),
+(1, 2, 2, 'PHP Seminar 2019', '', '2019-05-21 06:00:00', '2019-05-21 12:00:00', '2019-05-20 00:00:00', 1),
+(2, 2, 1, 'Bootstrap events 2019', '', '2019-05-4 00:00:00', '2019-05-4 00:00:00', '2019-05-01 00:00:00', 1),
+(3, 2, 2, 'Developers events', '', '2019-05-04 00:00:00', '2019-05-04 00:00:00', '2019-05-01 00:00:00', 1),
+(3, 1, 1, 'Annual Conference 2019', '', '2019-05-05 00:00:00', '2019-05-05 00:00:00', '2019-05-01 00:00:00', 1),
+(2, 2, 1, 'Bootstrap Annual events 2019', '', '2019-05-05 00:00:00', '2019-05-05 00:00:00', '2019-05-01 00:00:00', 1),
+(3, 2, 2, 'HTML5 events', '', '2019-05-05 00:00:00', '2019-05-05 00:00:00', '2019-05-01 00:00:00', 1),
+(1, 1, 1, 'PHP conference events 2019', '', '2019-05-08 00:00:00', '2019-05-08 00:00:00', '2019-05-02 00:00:00', 1),
+(3, 1, 2, 'Web World events', '', '2019-05-08 00:00:00', '2019-05-08 00:00:00', '2019-05-01 00:00:00', 1),
+(1, 2, 2, 'Wave PHP 2019', '', '2019-05-08 00:00:00', '2019-05-08 00:00:00', '2019-05-02 00:00:00', 1),
+(2, 1, 1, 'Dev PHP 2019', '', '2019-05-08 00:00:00', '2019-05-08 00:00:00', '2019-05-01 00:00:00', 1);

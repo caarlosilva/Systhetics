@@ -1,6 +1,6 @@
 <?php
 	require("conn.php");
-
+/*
     $conexao = conectar();
     $limite = 20;
     $query = "SELECT * FROM Agenda;";
@@ -25,8 +25,25 @@
 	echo json_encode($calendarData);
 
     desconectar($conexao);
-
+*/
     class AgendaDAO{
+        function insert($agenda){
+            $conexao = conectar();
+            date_default_timezone_set('America/Sao_Paulo');
+
+            $horaInicio = explode (':', $agenda['start_date']);
+            $dataInicio = $agenda['dia']." ".$agenda['start_date'];
+
+            $horaFim = explode (':', $agenda['end_date']);
+            $dataFim = $agenda['dia']." ".$agenda['end_date'];
+
+            $query = "INSERT INTO Agenda (id_serv, id_cliente, id_usuario, title, description, start_date, end_date, created) VALUES (?,?,?,?,?,?,?,?);";
+            $stmt = mysqli_prepare($conexao,$query);
+            mysqli_stmt_bind_param($stmt,"iiisssss",$agenda['id_serv'], $agenda['id_cliente'], $agenda['id_usuario'], $agenda['title'], $agenda['description'], $dataInicio, $dataFim, $agenda['created']);
+            executar_SQL($conexao,$stmt);
+            desconectar($conexao);
+        }
+
         function listar(){
             $conexao = conectar();
             $num = 1;
