@@ -1,7 +1,7 @@
 <?php
 	require("DAO/conn.php");
 	$conexao = conectar();
-	$querySQL = "SELECT * FROM agenda LIMIT 20;";
+	$querySQL = "SELECT * FROM agenda ORDER BY created DESC LIMIT 10;";
     $resultset = mysqli_query($conexao, $querySQL) or die("database error:". mysqli_error($conexao));
 	$calendar = array();
 

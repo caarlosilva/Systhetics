@@ -14,7 +14,7 @@
     $agenda['id_usuario']       = $_SESSION['id'];
     $agenda['dia']              = $_POST['data'];
     $agenda['title']            = $nomeServico['nome'] .' - '.$_POST['horaInicio'].' ~ ' . $_POST['horaFim'];
-    $agenda['description']      = "Serviço" .$nomeServico['nome']." marcado!";//$_POST['description'];
+    $agenda['description']      = "Serviço " .$nomeServico['nome']." marcado!";//$_POST['description'];
     $agenda['start_date']       = $_POST['horaInicio'];
     $agenda['end_date']         = $_POST['horaFim'];
     $agenda['created']          = date('Y-m-d H:i:s');

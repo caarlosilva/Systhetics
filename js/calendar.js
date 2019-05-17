@@ -235,12 +235,12 @@ if(!String.prototype.formatNum) {
 		d6: 'Sábado'
 	};
 
-	var browser_timezone = '';
+	//var browser_timezone = '';
 	try {
 		if($.type(window.jstz) == 'object' && $.type(jstz.determine) == 'function') {
-			browser_timezone = jstz.determine().name();
-			if($.type(browser_timezone) !== 'string') {
-				browser_timezone = '';
+			//browser_timezone = jstz.determine().name();
+			if(false/*$.type(browser_timezone) !== 'string'*/) {
+				//browser_timezone = '';
 			}
 		}
 	}
@@ -310,7 +310,7 @@ if(!String.prototype.formatNum) {
 				else if(m = /^(\d\d)([+\-])([1-5])\*([0-6])$/.exec(chunk)) {
 					var month = parseInt(m[1], 10) - 1;
 					var direction = m[2];
-					var offset = parseInt(m[3]);
+					//var offset = parseInt(m[3]);
 					var weekday = parseInt(m[4]);
 					switch(direction) {
 						case '+':
@@ -318,14 +318,14 @@ if(!String.prototype.formatNum) {
 							while(d.getDay() != weekday) {
 								d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
 							}
-							date = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7 * offset);
+							date = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 7 /** offset*/);
 							break;
 						case '-':
 							var d = new Date(year, month + 1, 0 + 7);
 							while(d.getDay() != weekday) {
 								d = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
 							}
-							date = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 7 * offset);
+							date = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 7 /** offset*/);
 							break;
 					}
 				}
@@ -944,10 +944,10 @@ if(!String.prototype.formatNum) {
 						var events = [];
 						var d_from = self.options.position.start;
 						var d_to = self.options.position.end;
-						var params = {from: d_from.getTime(), to: d_to.getTime(), utc_offset_from: d_from.getTimezoneOffset(), utc_offset_to: d_to.getTimezoneOffset()};
+						var params = {from: d_from.getTime(), to: d_to.getTime(), utc_offset_from: 180, utc_offset_to: 180};
 
-						if(browser_timezone.length) {
-							params.browser_timezone = browser_timezone;
+						if(false/*browser_timezone.length*/) {
+							//params.browser_timezone = browser_timezone;
 						}
 						$.ajax({
 							url: buildEventsUrl(source, params),
