@@ -154,7 +154,7 @@
                             </div>
                             <div class="form-group col-md">
                               <label for="horaInicio">Horário de Início</label>
-                              <input type="time" class="form-control" name="horaInicio" id="horaInicio" step="900" max="21:30" value="<?php echo date('H:00'); ?>" placeholder="">
+                              <input type="time" class="form-control" name="horaInicio" id="horaInicio" step="900" max="21:30" min="06:00" value="<?php echo date('H:00'); ?>" placeholder="">
                             </div>
                             <div class="form-group col-md">
                               <label for="secoes">Secões</label>
@@ -162,7 +162,7 @@
                             </div>
                             <div class="form-group col-md">
                               <label for="horaFim">Horário de Término</label>
-                              <input type="time" class="form-control" name="horaFim" readonly="true" id="horaFim" step="900" value="" placeholder="">
+                              <input type="time" class="form-control" name="horaFim" readonly="true" id="horaFim" max="23:00" step="900" value="" placeholder="">
                             </div>
                         </div>
 
