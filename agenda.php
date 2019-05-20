@@ -106,7 +106,7 @@
                                         </div>
                                         <div class="col-md-3 ">
                                             <h4 class="mt-0">Últimos Agendamentos Marcados</h4>
-                                            <ul id="eventlist" class="nav nav-list"></ul>
+                                            <ul id="eventlist" class="nav nav-list list-group list-group-flush"></ul>
                                         </div>
                                     </div>
                                 </div>
