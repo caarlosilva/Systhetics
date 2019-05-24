@@ -15,7 +15,7 @@
 
 			$.each(events, function(key, val) {
 				$(document.createElement('li'))
-					.html('<a href="' + val.url + '">' + val.title + '</a>')
+					.html('<a href="agendamento.php?id='+val.id+'">' + val.title + '</a>')
 					.appendTo(list);
 			});
 		},
