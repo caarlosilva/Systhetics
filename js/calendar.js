@@ -196,7 +196,7 @@ if(!String.prototype.formatNum) {
 		week:        'Semana {0}',
 		all_day:     'Durante todo o dia',
 		time:        'Tempo',
-		events:      'Desenvolvimentos',
+		events:      ' Desenvolvimentos',
 		before_time: 'Tempo antes da fita final',
 		after_time:  'End depois de uma fita temporária',
 

@@ -6,8 +6,14 @@ The idea came when a friend told me that she'll open a Esthetic Shop, and that s
 - [X] User Management
 - [X] Client Management
 - [X] Product Management
-- [ ] Service Management
-- [ ] Schedule Service
+- [X] Service Management
+- [X] Schedule Service
+- [ ] User Access Control / SESSION
+- [ ] Product Sale
+- [ ] Dashboard Graphs
+- [ ] Export do PDF (*unlikely*)
+- [ ] Configs (*unlikely*)
+ 
 
 ### **Technologies:**
   - [HTML 5](https://www.w3schools.com/html/html5_intro.asp)  

@@ -56,6 +56,17 @@
 
             return lerResultado($resultado);
         }
+
+        function get($id){
+            $conexao = conectar();
+            $query = "SELECT * FROM Agenda WHERE id = ?;";
+            $stmt = mysqli_prepare($conexao,$query);
+            mysqli_stmt_bind_param($stmt,"i", $id);
+            $resultado = executar_SQL($conexao,$stmt);
+            desconectar($conexao);
+
+            return lerResultado($resultado)[0];
+        }
     }
 
 ?>
