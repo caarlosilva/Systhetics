@@ -18,6 +18,7 @@
     $agenda['start_date']       = $_POST['horaInicio'];
     $agenda['end_date']         = $_POST['horaFim'];
     $agenda['created']          = date('Y-m-d H:i:s');
+    $agenda['marcado']          = date('d-m-Y H:i');
 
     //document.getElementById("demo").innerHTML = x;
 

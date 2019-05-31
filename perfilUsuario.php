@@ -52,7 +52,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-8">
-                            <div class="card">
+                            <div class="card border border-dark">
                                 <div class="card-header">
                                     <h4 class="card-title">Perfil de Usuário</h4>
                                 </div>
@@ -135,7 +135,7 @@
                         </div>
                         
                         <div class="col-md-4">
-                            <div class="card card-user">
+                            <div class="card card-user border border-dark">
                                 <div class="card-image">
                                     <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
                                 </div>
@@ -169,18 +169,6 @@
                                         <span class="text-info"> <?php if($usuario['admin'] == 0){echo 'Usuário Comum'; } else { echo 'Administrador';} ?> </span>                                      
                                         </strong> </h4>   
                                     </p>
-                                </div>
-                                <hr>
-                                <div class="button-container mr-auto ml-auto">
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </button>
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </button>
-                                    <button href="#" class="btn btn-simple btn-link btn-icon">
-                                        <i class="fa fa-google-plus-square"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>

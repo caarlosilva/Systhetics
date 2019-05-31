@@ -37,9 +37,9 @@
             $horaFim = explode (':', $agenda['end_date']);
             $dataFim = $agenda['dia']." ".$agenda['end_date'];
 
-            $query = "INSERT INTO Agenda (id_serv, id_cliente, id_usuario, title, description, start_date, end_date, created) VALUES (?,?,?,?,?,?,?,?);";
+            $query = "INSERT INTO Agenda (id_serv, id_cliente, id_usuario, title, description, start_date, end_date, created, marcado) VALUES (?,?,?,?,?,?,?,?,?);";
             $stmt = mysqli_prepare($conexao,$query);
-            mysqli_stmt_bind_param($stmt,"iiisssss",$agenda['id_serv'], $agenda['id_cliente'], $agenda['id_usuario'], $agenda['title'], $agenda['description'], $dataInicio, $dataFim, $agenda['created']);
+            mysqli_stmt_bind_param($stmt,"iiissssss",$agenda['id_serv'], $agenda['id_cliente'], $agenda['id_usuario'], $agenda['title'], $agenda['description'], $dataInicio, $dataFim, $agenda['created'], $agenda['marcado']);
             executar_SQL($conexao,$stmt);
             desconectar($conexao);
         }

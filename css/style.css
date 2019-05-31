@@ -32,3 +32,14 @@
 .desc{
 	resize: none;
 }
+
+.evnt-ttle {
+  border: none !important;
+  background: transparent !important;
+  font-size: 24px;
+  text-align: center;
+}
+
+.evnt-ttle:hover{
+  background: #f7f7f7!important;
+}

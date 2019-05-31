@@ -24,11 +24,8 @@
     require "DAO/clienteDAO.php";
     require "DAO/servicoDAO.php";
     require "DAO/agendaDAO.php";
-        $cDAO = new ClienteDAO(); 
-        $sDAO = new ServicoDAO();
-        $busca = "";
-        $clientes = $cDAO->listar($busca);  
-        $servicos = $sDAO->listar($busca);
+    require "DAO/userDAO.php";
+
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -38,6 +35,10 @@
             header('Location:index.php?msg=erropermissao');
         }
 
+        $cDAO = new ClienteDAO(); 
+        $sDAO = new ServicoDAO();
+        $clientes = $cDAO->listar("");  
+        $servicos = $sDAO->listar("");
         if(isset($_GET['msg'])){
             switch($_GET['msg']){
                 case "sucesso":
@@ -68,6 +69,12 @@
         if(isset($_GET['id'])){
             $aDAO = new AgendaDAO();
             $agendamento = $aDAO->get($_GET['id']);
+
+
+            $uDAO = new UserDAO();
+            $cliente = $cDAO->get($agendamento['id_cliente']);  
+            $servico = $sDAO->get($agendamento['id_serv']);
+            $usuario = $uDAO->getById($agendamento['id_usuario']);
         }                           
     ?>
 
@@ -83,7 +90,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <div class="card">
+                            <div class="card border border-dark">
                                 <div class="card-body">
                                     <div class="page-header">
                                         
@@ -94,30 +101,84 @@
                                     <div class="row"> 
                                         <div class="col pull-left form-inline ml-4">
                                             <div class="btn-group">
-                                                <button class="btn btn-primary" data-calendar-nav="prev"><b><</b> </button>
-                                                <button class="btn btn-primary" data-calendar-nav="today"><b>•</b></button>
-                                                <button class="btn btn-primary" data-calendar-nav="next"> <b>></b></button>
+                                                <button class="rounded-0 btn btn-primary border-right-0 border-left-0 border-top-0 mx-1" title="Voltar" data-calendar-nav="prev"><i class="fa fa-arrow-left"></i></button>
+                                                <button class="rounded-0 btn btn-primary border-right-0 border-left-0 border-top-0 mx-1" title="Hoje" data-calendar-nav="today"><i class="fa fa-circle"></i></button>
+                                                <button class="rounded-0 btn btn-primary border-right-0 border-left-0 border-top-0 mx-1" title="Avançar" data-calendar-nav="next"><i class="fa fa-arrow-right"></i></button>
                                             </div>
                                             <div class="btn-group ml-5">
-                                                <button class="btn btn-warning active" data-calendar-view="month">Mês</button>
-                                                <button class="btn btn-warning" data-calendar-view="day">Dia</button>
+                                                <button class="rounded-0 btn btn-success border-right-0 border-left-0 border-top-0 mx-1" title="Ver por Ano" data-calendar-view="year">Ano</button>
+                                                <button class="rounded-0 btn btn-success border-right-0 border-left-0 border-top-0 mx-1 active" title="Ver por Mês" data-calendar-view="month">Mês</button>    
+                                                <button class="rounded-0 btn btn-success border-right-0 border-left-0 border-top-0 mx-1" title="Ver por Dia" data-calendar-view="day">Dia</button>
                                             </div>
                                         </div>
                                         <div class="col d-flex justify-content-end ml-5">
-                                            <button class="btn btn-dark" data-toggle="modal" data-target="#modalCadastroAgendamento"><b>Novo Agendamento</b></button>
+                                            <button class="btn btn-black border border-dark text-dark" data-toggle="modal" data-target="#modalCadastroAgendamento"><b>Novo Agendamento</b></button>
                                         </div>
                                     </div>
                                     </div>                                   
                                         <hr>
                                     <div class="row">
-                                        <div class="col-md-8 ml-3">
+                                        <div class="col-md-8 ml-3 p-2">
                                             <div id="showEventCalendar">  
                                                                             
                                             </div>
                                         </div>
-                                        <div class="col-md-3 ">
-                                            <h4 class="mt-0">Últimos Agendamentos Marcados</h4>
-                                            <ul id="eventlist" class="nav nav-list list-group list-group-flush"></ul>
+                                        <div class="col-md">
+                                            <h4 class="mt-0 text-center"><?php if(!isset($agendamento)){echo 'Selecione um Agendamento para ver Detalhes';}?></h4>
+                                            <!-- <ul id="eventlist" class="nav nav-list list-group list-group-flush"></ul> -->
+                                            <?php if(isset($agendamento)){ 
+                                                date_default_timezone_set('America/Sao_Paulo');?>
+                                                <div class="row">
+                                                <div class="col mx-2 text-center ">
+                                                  <label for="agendamentoNome"></label>
+                                                  <input type="text" class="text-success text-center evnt-ttle" id="agendamentoNome" name="agendamentoNome" disabled value="<?php echo $agendamento['title'] ;?>">
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="col mx-2 mt-3">
+                                                    <label for="agendamentoUsuario">Usuário</label>
+                                                    <input type="text" class="form-control" id="agendamentoUsuario" name="agendamentoUsuario" disabled value="<?php echo $usuario['nome'] ;?>">
+                                                </div>       
+                                              </div>
+                                              <div class="row">
+                                                <div class="col mx-2 mt-3">
+                                                    <label for="agendamentoCliente">Cliente</label>
+                                                    <input type="text" class="form-control" id="agendamentoCliente" name="agendamentoCliente" disabled value="<?php echo $cliente['nome'] ;?>">
+                                                </div>       
+                                              </div>
+                                              <div class="row">
+                                                <div class="col mx-2 mt-3">
+                                                    <label for="agendamentoServico">Serviço</label>
+                                                    <input type="text" class="form-control" id="agendamentoServico" name="agendamentoServico" disabled value="<?php echo $servico['nome'];?> - <?php echo $servico['tipo'];?>">
+                                                </div> 
+                                                <div class="col-4 mr-2 mt-3">
+                                                    <label for="agendamentoPreco">Preço/Sessão</label>
+                                                    <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="basic-addon1">R$</span>
+                                                            </div>
+                                                            <input name="agendamentoPreco" id="agendamentoPreco" disabled type="number" class="form-control" value="<?php echo $servico['preco'] ;?>">
+                                                        </div>
+                                                </div>      
+                                              </div>
+                                              <div class="row">
+                                                  <div class="form-group mx-2 col-md">
+                                                    <label for="agendamentoInicio">Horário de Início</label>
+                                                    <input type="time" class="form-control" name="agendamentoInicio" id="agendamentoInicio" readonly="true" value="<?php $horarioInicio = explode (':', $agendamento['start_date']); $hora = explode (' ', $horarioInicio[0]); echo $hora[1].':'.$horarioInicio[1]; ?>">
+                                                </div>
+                                                <div class="form-group mx-2 col-md">
+                                                    <label for="agendamentoFim">Horário de Término</label>
+                                                    <input type="time" class="form-control" name="agendamentoFim" readonly="true" id="agendamentoFim" value="<?php $horarioFim = explode (':', $agendamento['end_date']); $hora = explode (' ', $horarioFim[0]); echo $hora[1].':'.$horarioFim[1]; ?>">
+                                                </div>
+                                              </div>                                                       
+                                                <hr>
+                                                <div class="row align-content-end">
+                                                    <div class="form-group mx-2 col-md-6 ">
+                                                        <label for="created">Marcado em</label>
+                                                        <input type="datetime" class="form-control" name="created" readonly="true" id="created" value='<?php echo str_replace("-", "/", $agendamento['marcado']); ?>'>
+                                                    </div>
+                                                </div>
+                                            <?php }?>
                                         </div>
                                     </div>
                                 </div>
@@ -177,6 +238,7 @@
                               <input type="time" class="form-control" name="horaFim" readonly="true" id="horaFim" max="23:00" step="900" value="" placeholder="">
                             </div>
                         </div>
+
 
                         </div>
                         <div class="modal-footer">

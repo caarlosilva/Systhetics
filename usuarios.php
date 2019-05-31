@@ -72,7 +72,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">        
-                                <div class="card striped-tabled-with-hover">
+                                <div class="card striped-tabled-with-hover border border-dark">
                                     <div class="card-header ">
                                         <h3 class="card-title">Usuários</h3>
                                         <p class="card-category">Usuários cadastrados no sistema</p>
@@ -80,12 +80,12 @@
                                     <div class="card-body table-full-width">
                                         <div class="row ">
                                             <div class="col-2 ml-3" >
-                                                <a class="btn btn-success form-control" role="button" data-toggle="modal" data-target="#modalCadastroUsuario">
+                                                <a class="btn btn-success form-control border border-dark" role="button" data-toggle="modal" data-target="#modalCadastroUsuario">
                                                     <i><strong> Novo</strong></i>
                                                 </a>
                                             </div>
                                             <div class="col mr-3">
-                                                <input class="form-control" type="search" name="search" placeholder="Pesquisar">
+                                                <input class="form-control border border-dark" type="search" name="search" placeholder="Pesquisar">
                                             </div>                                           
                                         </div>
                                         

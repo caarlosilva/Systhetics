@@ -39,7 +39,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="card ">
+                            <div class="card border border-dark">
                                 <div class="card-header ">
                                     <h4 class="card-title">Atendimentos por Hora do Dia</h4>
                                     <p class="card-category">Comtempla venda de produtos e serviços</p>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <div class="card ">
+                            <div class="card border border-dark">
                                 <div class="card-header ">
                                     <h4 class="card-title">Users Behavior</h4>
                                     <p class="card-category">24 Hours performance</p>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card ">
+                            <div class="card border border-dark">
                                 <div class="card-header ">
                                     <h4 class="card-title">Comparativo entre venda de Produtos/Serviços</h4>
                                     <p class="card-category">2019</p>
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="card  card-tasks">
+                            <div class="card card-tasks border border-dark">
                                 <div class="card-header ">
                                     <h4 class="card-title">Tasks</h4>
                                     <p class="card-category">Backend development</p>

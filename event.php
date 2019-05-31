@@ -13,7 +13,7 @@
 	    $calendar[] = array(
 		    'id' =>$rows['id'],
 		    'title' => $rows['title'],
-		    'url' => "agendamento.php?id=".$rows['id'],
+		    'url' => "agenda.php?id=".$rows['id'],
 		    'class' => 'event-important',
 		    'start' => "$start",
 		    'end' => "$end");}

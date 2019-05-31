@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS Agenda (
 	start_date varchar(50) COLLATE utf8_unicode_ci NOT NULL,
 	end_date varchar(50) COLLATE utf8_unicode_ci NOT NULL,
 	created datetime NOT NULL,
+	marcado varchar(62) NOT NULL,
 	status tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=Active, 0=Block',
 	FOREIGN KEY (id_serv) REFERENCES Servico(id),
 	FOREIGN KEY (id_cliente) REFERENCES Cliente(id),
@@ -72,7 +73,24 @@ CREATE TABLE IF NOT EXISTS Agenda (
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
+CREATE TABLE IF NOT EXISTS Venda (
+	id int AUTO_INCREMENT UNIQUE,
+	id_usuario int NOT NULL,
+	data varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+	total DOUBLE,
+	FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+	PRIMARY KEY(id)
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS ProdutosVenda (
+	id_venda int ,
+	id_produto int,
+	qtd_venda double,
+	precoVenda double,
+	FOREIGN KEY (id_venda) REFERENCES Venda(id),
+	FOREIGN KEY (id_produto) REFERENCES produto(id),
+	PRIMARY KEY(id_venda, id_produto)
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 SET GLOBAL lc_time_names=pt_BR;
 SET NAMES utf8mb4;
