@@ -20,13 +20,18 @@
 
     <!--     -->   
     <?php require "DAO/userDAO.php";
-        $uDAO = new UserDAO(); 
-        $busca = "";
-        $users = $uDAO->listar($busca); 
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        if(!isset($_SESSION) || $_SESSION['admin'] != 1){
+            header('Location:index.php?msg=erropermissao');
+        }
+
+        $uDAO = new UserDAO(); 
+        $busca = "";
+        $users = $uDAO->listar($busca); 
 
         if(isset($_GET['msg'])){
             switch($_GET['msg']){

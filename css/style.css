@@ -7,7 +7,7 @@
   top: 0!important;
   width: 100% !important; /* Full width */
   height: 100% !important; /* Full height */
-  overflow: auto !important; /* Enable scroll if needed */
+  /*overflow: auto !important;  Enable scroll if needed */
 }
 
 .modal-content {
@@ -15,6 +15,13 @@
   padding: 10px !important;
   border: 1px solid white !important;
   width: 600px !important; /* Could be more or less, depending on screen size */
+}
+
+.modal-prod{
+  margin: 0 auto !important; /* 15% from the top and centered */
+  padding: 10px !important;
+  border: 1px solid white !important;
+  width: 800px !important; /* Could be more or less, depending on screen size */
 }
 
 .modal-title{

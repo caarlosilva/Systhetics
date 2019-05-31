@@ -24,6 +24,7 @@
     <link href="css/signin.css" type="text/CSS" rel="stylesheet">
 
     <?php 
+
         if(isset($_GET['msg'])){
             switch($_GET['msg']){
                 case "sucesso":
@@ -50,6 +51,16 @@
                     $mensagem = "Dados inválidos! Por favor, insira-os corretamente." ;
                     $icon = 'nc-icon nc-simple-remove';
                     $colortype = 'danger'; 
+                    break;
+                case "erropermissao":
+                    $mensagem = "Você não tem permissão para acessar esse contéudo." ;
+                    $icon = 'nc-icon nc-simple-remove';
+                    $colortype = 'danger'; 
+                    break;
+                case "logout":
+                    $mensagem = "Usuário desconectado!" ;
+                    $icon = 'nc-icon nc-single-02';
+                    $colortype = 'primary'; 
                     break;
                 default:
                     break;

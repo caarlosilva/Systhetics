@@ -6,8 +6,8 @@
         Tip 2: you can also add an image using data-image tag
     -->
             <div class="sidebar-wrapper">
-                <div class="logo text-center">
-                    <img class="mx-5" src="img/logo.png" alt="" width="48" height="48">
+                <div class="logo text-center" style="height: 60px;">
+                    <img class="mx-5" src="img/logo.png" alt="Systhetics Logo" title="Systhetics" height="100%">
                     <!-- 
                     <span class="title-left-pn">
                         Systhetics
@@ -24,19 +24,7 @@
                     <li>
                         <a class="nav-link" href="agenda.php">
                             <i class="nc-icon nc-bullet-list-67"></i>
-                            <p>Agenda</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="clientes.php">
-                            <i class="nc-icon nc-single-02"></i>
-                            <p>Clientes</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="produtos.php">
-                            <i class="nc-icon nc-cart-simple"></i>
-                            <p>Produtos</p>
+                            <p>Agendamentos</p>
                         </a>
                     </li>
                     <li>
@@ -45,6 +33,26 @@
                             <p>Serviços</p>
                         </a>
                     </li> 
+                    <hr>
+                    <li>
+                        <a class="nav-link" href="vendas.php">
+                            <i class="nc-icon nc-cart-simple"></i>
+                            <p>Vendas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="produtos.php">
+                            <i class="nc-icon nc-app"></i>
+                            <p>Produtos</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="nav-item">
+                        <a class="nav-link" href="clientes.php">
+                            <i class="nc-icon nc-single-02"></i>
+                            <p>Clientes</p>
+                        </a>
+                    </li>                    
                     <li>
                         <a class="nav-link" href="usuarios.php">
                             <i class="nc-icon nc-circle-09"></i>

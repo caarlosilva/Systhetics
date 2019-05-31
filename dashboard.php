@@ -16,6 +16,17 @@
     <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="css/dashboard-style.css" rel="stylesheet" /> 
+
+    <?php
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(!isset($_SESSION) || $_SESSION['admin'] != 1){
+            header('Location:index.php?msg=erropermissao');
+        }
+    ?>
 </head>
 
 <body>

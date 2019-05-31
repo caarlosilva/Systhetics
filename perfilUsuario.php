@@ -23,6 +23,14 @@
         require "DAO/conn.php";
         require "DAO/userDAO.php";
 
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(!isset($_SESSION) || $_SESSION['admin'] != 1){
+            header('Location:index.php?msg=erropermissao');
+        }
+        
         if(isset($_GET['id'])){
             $userDAO = new UserDAO();
             $usuario = $userDAO->getById($_GET['id']);

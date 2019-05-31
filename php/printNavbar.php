@@ -5,24 +5,18 @@
         }
         ?>
                 <div class=" container-fluid  ">
-                    <a class="navbar-brand" href="#"> Systhetics </a>
+                    <a class="navbar-brand" href="dashboard.php"> Systhetics </a>
                     <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                    <div class="ml-3 collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">pallete &nbsp;</span>
-                                </a>
-                            </li>
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">99</span>
+                                    <i class="nc-icon nc-bell-55"></i>
+                                    <span class="notification">5</span>
                                     <span class="d-lg-none">Notification</span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -33,12 +27,14 @@
                                     <a class="dropdown-item" href="#">Another notification</a>
                                 </ul>
                             </li>
+                            <!--
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nc-icon nc-zoom-split"></i>
                                     <span class="d-lg-block">&nbsp;Pesquisar</span>
                                 </a>
                             </li>
+                        -->
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
@@ -66,7 +62,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php">
+                                <a class="nav-link" href="php/logout.php">
                                     <span class="no-icon">Sair</span>
                                 </a>
                             </li>

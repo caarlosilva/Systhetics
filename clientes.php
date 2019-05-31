@@ -28,6 +28,10 @@
             session_start();
         }
 
+        if(!isset($_SESSION) || $_SESSION['admin'] != 1){
+            header('Location:index.php?msg=erropermissao');
+        }
+
         if(isset($_GET['msg'])){
             switch($_GET['msg']){
                 case "sucesso":

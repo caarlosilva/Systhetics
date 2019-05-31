@@ -19,6 +19,15 @@
     <link href="css/user.css" rel="stylesheet" type="text/css" >
 
     <?php require "DAO/produtoDAO.php";
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(!isset($_SESSION) || $_SESSION['admin'] != 1){
+            header('Location:index.php?msg=erropermissao');
+        }
+
         $produtoDAO = new ProdutoDAO(); 
         $busca = ""; 
         $produtos = $produtoDAO->listar($busca);
@@ -35,10 +44,6 @@
             $prodView['foto']='img/produto/default.png';
             $prodView['preco']=1.99;
             $prodView['quantidade']=10;
-        }
-
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
         }
 
         if(isset($_GET['msg'])){
@@ -139,7 +144,7 @@
                                                 </p>    
                                             </label>
                                             <input id="imagem" name="imagem" type="file" accept="image/*">
-                                            <input type="hidden" name="email" id="email" value="<?php echo $prodView['nome'] ;?>">
+                                            <input type="hidden" name="nome" id="nome" value="<?php echo $prodView['nome'] ;?>">
                                             <input type="hidden" name="id" id="id" value = "<?php echo $prodView['id'] ;?>">
                                         </form>
 

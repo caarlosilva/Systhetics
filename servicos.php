@@ -19,6 +19,15 @@
     <link href="css/user.css" rel="stylesheet" type="text/css" >
 
     <?php require "DAO/servicoDAO.php";
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(!isset($_SESSION) || $_SESSION['admin'] != 1){
+            header('Location:index.php?msg=erropermissao');
+        }
+
         $servicoDAO = new ServicoDAO(); 
         $busca = ""; 
         $servicos = $servicoDAO->listar($busca);
@@ -35,10 +44,6 @@
             $servView['foto']='img/servico/default.png';
             $servView['preco']=1.99;
             $servView['tipo']='Corporal';
-        }
-
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
         }
 
         if(isset($_GET['msg'])){
