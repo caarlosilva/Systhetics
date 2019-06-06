@@ -2,7 +2,7 @@
 	date_default_timezone_set('America/Sao_Paulo');
 	require("DAO/conn.php");
 	$conexao = conectar();
-	$querySQL = "SELECT * FROM agenda LIMIT 5 ORDER BY created DESC;";
+	$querySQL = "SELECT * FROM Agenda LIMIT 5 ORDER BY created DESC;";
     $resultset = mysqli_query($conexao, $querySQL) or die("database error:". mysqli_error($conexao));
 	$calendar = array();
 

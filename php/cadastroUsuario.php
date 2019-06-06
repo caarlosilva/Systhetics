@@ -1,4 +1,4 @@
-<?php require "../DAO/UserDAO.php";
+<?php require "../DAO/userDAO.php";
 
     $usuario['email'] = $_POST['inputEmail'];
     $usuario['nome'] = $_POST['inputName'];

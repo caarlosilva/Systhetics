@@ -14,7 +14,7 @@
         $nomeImagem = $id . "." . $extensao;
         $caminhoImagem = 'img/produto/' . $nomeImagem;
         
-        $query = "UPDATE produto SET foto = ? WHERE id = ?;";
+        $query = "UPDATE Produto SET foto = ? WHERE id = ?;";
         $stmt = mysqli_prepare($conexao,$query);
         mysqli_stmt_bind_param($stmt,"si",$caminhoImagem,$id);
         $resultado = executar_SQL($conexao,$stmt);

@@ -15,7 +15,7 @@
         $nomeImagem = $email . "." . $extensao;
         $caminhoImagem = 'img/usuario/' . $nomeImagem;
         
-        $query = "UPDATE usuario SET foto = ? WHERE email = ?;";
+        $query = "UPDATE Usuario SET foto = ? WHERE email = ?;";
         $stmt = mysqli_prepare($conexao,$query);
         mysqli_stmt_bind_param($stmt,"ss",$caminhoImagem,$email);
         $resultado = executar_SQL($conexao,$stmt);

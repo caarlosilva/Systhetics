@@ -37,7 +37,7 @@
             $horaFim = explode (':', $agenda['end_date']);
             $dataFim = $agenda['dia']." ".$agenda['end_date'];
 
-            $query = "INSERT INTO Agenda (id_serv, id_cliente, id_usuario, title, description, start_date, end_date, created, marcado) VALUES (?,?,?,?,?,?,?,?,?);";
+            $query = "INSERT INTO agenda (id_serv, id_cliente, id_usuario, title, description, start_date, end_date, created, marcado) VALUES (?,?,?,?,?,?,?,?,?);";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"iiissssss",$agenda['id_serv'], $agenda['id_cliente'], $agenda['id_usuario'], $agenda['title'], $agenda['description'], $dataInicio, $dataFim, $agenda['created'], $agenda['marcado']);
             executar_SQL($conexao,$stmt);
@@ -47,10 +47,9 @@
         function listar(){
             $conexao = conectar();
             $num = 1;
-            $busca = "%" . $busca . "%";
-            $query = "SELECT * FROM Agenda WHERE ?;";
+            $query = "SELECT * FROM agenda WHERE ?;";
             $stmt = mysqli_prepare($conexao,$query);
-            mysqli_stmt_bind_param($stmt,"i",$busca);
+            mysqli_stmt_bind_param($stmt,"i",$num);
             $resultado = executar_SQL($conexao,$stmt);
             desconectar($conexao);
 
@@ -59,7 +58,7 @@
 
         function get($id){
             $conexao = conectar();
-            $query = "SELECT * FROM Agenda WHERE id = ?;";
+            $query = "SELECT * FROM agenda WHERE id = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"i", $id);
             $resultado = executar_SQL($conexao,$stmt);

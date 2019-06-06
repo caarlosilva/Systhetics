@@ -37,7 +37,7 @@
 
         function updateAdmin($usuario){
             $conexao = conectar();
-            $query = "UPDATE usuario SET admin = ? WHERE email = ?;";
+            $query = "UPDATE Usuario SET admin = ? WHERE email = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"is",$usuario['admin'],$usuario['email']);
             executar_SQL($conexao,$stmt);
@@ -46,7 +46,7 @@
 
         function remove($email){
             $conexao = conectar();
-            $query = "DELETE FROM usuario WHERE email = ?;";
+            $query = "DELETE FROM Usuario WHERE email = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"s",$email);
             executar_SQL($conexao,$stmt);
@@ -67,7 +67,7 @@
 
         function get($email){
             $conexao = conectar();
-            $query = "SELECT id, email, nome, senha, tel1, tel2, admin, foto FROM usuario WHERE email = ?;";
+            $query = "SELECT id, email, nome, senha, tel1, tel2, admin, foto FROM Usuario WHERE email = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"s",$email);
             $resultado = executar_SQL($conexao,$stmt);
@@ -78,7 +78,7 @@
 
         function getById($id){
             $conexao = conectar();
-            $query = "SELECT id, email, nome, senha, tel1, tel2, admin, foto FROM usuario WHERE id = ?;";
+            $query = "SELECT id, email, nome, senha, tel1, tel2, admin, foto FROM Usuario WHERE id = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"i",$id);
             $resultado = executar_SQL($conexao,$stmt);
@@ -89,7 +89,7 @@
 
         function login($email,$senha){
             $conexao = conectar();
-            $query = "SELECT * FROM usuario WHERE email = ? AND senha = ?;";
+            $query = "SELECT * FROM Usuario WHERE email = ? AND senha = ?;";
             $stmt = mysqli_prepare($conexao,$query);
             mysqli_stmt_bind_param($stmt,"ss",$email,$senha);
             $resultado = executar_SQL($conexao,$stmt);
@@ -106,7 +106,7 @@
 
         function countAdmin(){
             $conexao = conectar();
-            $query = "SELECT * FROM usuario WHERE admin = 1;";
+            $query = "SELECT * FROM Usuario WHERE admin = 1;";
             $stmt = mysqli_prepare($conexao,$query);
             $resultado = executar_SQL($conexao,$stmt);
             desconectar($conexao);

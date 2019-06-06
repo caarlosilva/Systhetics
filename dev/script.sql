@@ -119,14 +119,15 @@ INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("s@s.com", "
 INSERT INTO Usuario (email, nome, senha, tel1, tel2, admin) VALUES ("t@t.com", "Truta Alada", "t", "(16) 12345-6789", "(19) 12345-6789", 0);
 
 INSERT INTO Cliente (nome, tel1, tel2, cep, rua, num, complemento, bairro, cidade, estado) VALUES 
-("Carlos Eduardo Teixeira da Silva", "(16) 99755-0858", "(16) 33661-367", "13573059", "Joaquim Garcia de Oliveira", "882", "", "Cidade Aracy", "São Carlos", "SP"),
+("Dorivaldo Pederneiras", "(16) 99775-7828", "(16) 33666-667", "13573059", "Joaquim Garcia de Oliveira", "882", "", "Cidade Aracy", "São Carlos", "SP"),
 ("Jorge Ben Jor", "(11) 99789-5389", "(16) 40028-922", "13573050", "Avenida Regit Arab", "190", "", "Cidade Aracy", "São Carlos", "SP");
 
 INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES 
-("Creme de Chiclete", "Nem sei se existe irmão, só pra teste.", 15.6, 15),
-("Manteiga de Cacau", "Aquela parada q tu só usa quando ta sem boca já", 7.50, 87),
-("Óleo de Cozinha", "Geralmente substituido por margarina na hora de fritar as coisas", 8.99, 2),
-("Shampoo Betina", "Pra dar aquela investida no cabelo", 1502, 0);
+("Creme Facial Natura", "Isso é um creme pra jogar na cara, tipo reboco.", 19.9, 58),
+("Manteiga de Cacau", "Aquela parada q tu só usa quando ta sem boca já.", 7.50, 87),
+("Óleo de Cozinha", "Pode passar no corpo também sim, eu vi na internet.", 8.99, 23),
+("Shampoo Betina", "Pra dar aquela investida no cabelo", 1000000, 1);
+("Pente Fino", "Sua vó provavelmente usou bastante isso já.", 3.5, 0);
 
 INSERT INTO Servico (nome, descricao, tipo, preco) VALUES 
 ("Limpeza de Pele", "Ducha completo na pessoa meu cumpadi", "Corporal", 50),

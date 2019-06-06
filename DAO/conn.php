@@ -1,4 +1,19 @@
 <?php
+
+if(!defined('S_SERVIDOR')){
+    define('S_SERVIDOR', '35.198.63.234');
+}
+if(!defined('BD_USUARIO')){
+    define('BD_USUARIO', 'root');
+}
+if(!defined('BD_SENHA')){
+    define('BD_SENHA', 'xpectre06');
+}
+if(!defined('BD_BASEDEDADOS')){
+    define('BD_BASEDEDADOS', 'systhetics');
+}
+
+/*
 if(!defined('S_SERVIDOR')){
     define('S_SERVIDOR', 'localhost');
 }
@@ -11,6 +26,7 @@ if(!defined('BD_SENHA')){
 if(!defined('BD_BASEDEDADOS')){
     define('BD_BASEDEDADOS', 'systhetics');
 }
+*/
 
 if(!function_exists('conectar')){
     function conectar(){
